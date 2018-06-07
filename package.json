@@ -1,0 +1,35 @@
+{
+  "name": "vue-template",
+  "version": "0.0.1",
+  "description": "Vue.js template for creating new web application",
+  "license": "MIT",
+  "main": "index.js",
+  "homepage": "https://github.com/lacodda/vue-template",
+  "author": {
+    "name": "Kirill Lahtachev",
+    "email": "lahtachev@gmail.com",
+    "url": "http://lacodda.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lacodda/vue-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lacodda/vue-template/issues"
+  },
+  "keywords": [
+    "vue",
+    "template"
+  ],
+  "scripts": {
+  },
+  "files": [
+    "bin/",
+    "lib/"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
