@@ -21,8 +21,7 @@
     "vue",
     "template"
   ],
-  "scripts": {
-  },
+  "scripts": {},
   "files": [
     "bin/",
     "lib/"
@@ -30,6 +29,25 @@
   "engines": {
     "node": ">=8"
   },
-  "devDependencies": {},
-  "dependencies": {}
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.49",
+    "@babel/core": "^7.0.0-beta.49",
+    "@babel/preset-env": "^7.0.0-beta.49",
+    "@babel/preset-stage-2": "^7.0.0-beta.49",
+    "autoprefixer": "^8.6.2",
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "mocha": "^5.2.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.3",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.3",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  }
 }
