@@ -1,15 +1,13 @@
 {
-  "env": {
-    "development": {
-      "presets": [
-        "env"
-      ]
-    },
-    "production": {
-      "presets": [
-        "env",
-        "minify"
-      ]
-    }
-  }
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import"
+  ]
 }

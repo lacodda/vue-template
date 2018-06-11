@@ -1,15 +1,18 @@
 {
-  "parser": "babel-eslint",
-  "extends": [
-    "airbnb-base"
-  ],
+  "root": true,
   "env": {
-    "mocha": true
+    "browser": true,
+    "node": true
   },
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module"
+  },
+  "extends": [
+    "@avalanche/eslint-config",
+    "plugin:vue/recommended"
+  ],
   "rules": {
-    "comma-dangle": [
-      "error",
-      "only-multiline"
-    ]
+    "vue/require-default-prop": 0
   }
 }
