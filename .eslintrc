@@ -9,7 +9,7 @@
     "sourceType": "module"
   },
   "extends": [
-    "@avalanche/eslint-config",
+    "airbnb-base",
     "plugin:vue/recommended"
   ],
   "rules": {

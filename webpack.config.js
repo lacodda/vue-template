@@ -2,6 +2,7 @@ const { VueLoaderPlugin } = require(`vue-loader`);
 const nodeSassMagicImporter = require(`node-sass-magic-importer`);
 const path = require(`path`);
 
+const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require(`html-webpack-plugin`);
 const MiniCssExtractPlugin = require(`mini-css-extract-plugin`);
 const OptimizeCSSAssetsPlugin = require(`optimize-css-assets-webpack-plugin`);
@@ -43,6 +44,17 @@ const config = {
           {
             loader: `css-loader`,
             options: {
+              sourceMap,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                autoprefixer({
+                  browsers: ['ie >= 8', 'last 4 version'],
+                }),
+              ],
               sourceMap,
             },
           },

@@ -4,7 +4,7 @@
       <template slot="headline">
         Welcome!
       </template>
-
+      <h1 class="text">Hello</h1>
       <p>
         Lorem ipsum dolor sit amet, <app-link :to="{ name: `list` }">
         consetetur</app-link> adipscing elitr, sed diam nonumy eirmod tempor
@@ -74,6 +74,15 @@ export default {
 
   &__teaserList {
     margin-top: $section-spacing;
+  }
+  .text {
+    text-transform: uppercase;
+    background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+    color: transparent;
+    -webkit-background-clip: text;
+    font: {
+      size: 100px;
+    };
   }
 }
 </style>
