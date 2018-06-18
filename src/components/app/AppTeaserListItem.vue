@@ -5,15 +5,15 @@
 </template>
 
 <script>
-export default {
-  name: `AppTeaserListItem`,
-};
+  export default {
+    name: `AppTeaserListItem`,
+  };
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/objects/layout.mixin';
+  @import '../../scss/objects/layout.mixin';
 
-.AppTeaserListItem {
-  @include layout__item(auto, 16em);
-}
+  .AppTeaserListItem {
+    @include layout__item(auto, 16em);
+  }
 </style>

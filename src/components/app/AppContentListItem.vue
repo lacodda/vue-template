@@ -22,51 +22,51 @@
 </template>
 
 <script>
-import AppButton from './AppButton.vue';
-import AppHeadline from './AppHeadline.vue';
-import AppText from './AppText.vue';
+  import AppButton from './AppButton.vue';
+  import AppHeadline from './AppHeadline.vue';
+  import AppText from './AppText.vue';
 
-export default {
-  name: `AppContentListItem`,
-  components: {
-    AppButton,
-    AppHeadline,
-    AppText,
-  },
-};
+  export default {
+    name: `AppContentListItem`,
+    components: {
+      AppButton,
+      AppHeadline,
+      AppText,
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/objects/card.mixin';
-@import '../../scss/objects/layout.mixin';
+  @import '../../scss/objects/card.mixin';
+  @import '../../scss/objects/layout.mixin';
 
-.AppContentListItem {
-  @include card();
+  .AppContentListItem {
+    @include card();
 
-  &__wrap {
-    @include layout();
-  }
+    &__wrap {
+      @include layout();
+    }
 
-  &__figure {
-    @include layout__item();
+    &__figure {
+      @include layout__item();
 
-    img {
-      display: block;
+      img {
+        display: block;
+      }
+    }
+
+    &__description {
+      @include layout__item(max, 14em);
+    }
+
+    &__text {
+      margin-top: 0.5em;
+    }
+
+    &__actions {
+      @include layout__item();
+
+      align-self: center;
     }
   }
-
-  &__description {
-    @include layout__item(max, 14em);
-  }
-
-  &__text {
-    margin-top: 0.5em;
-  }
-
-  &__actions {
-    @include layout__item();
-
-    align-self: center;
-  }
-}
 </style>

@@ -5,15 +5,15 @@
 </template>
 
 <script>
-export default {
-  name: `AppContentList`,
-};
+  export default {
+    name: `AppContentList`,
+  };
 </script>
 
 <style lang="scss" scoped>
-.AppContentList {
-  > :not(:first-child) {
-    margin-top: 1em;
+  .AppContentList {
+    > :not(:first-child) {
+      margin-top: 1em;
+    }
   }
-}
 </style>

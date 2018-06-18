@@ -6,8 +6,11 @@
       </template>
       <h1 class="text">Hello</h1>
       <p>
-        Lorem ipsum dolor sit amet, <app-link :to="{ name: `list` }">
-        consetetur</app-link> adipscing elitr, sed diam nonumy eirmod tempor
+        Lorem ipsum dolor sit amet,
+        <app-link :to="{ name: `list` }">
+          consetetur
+        </app-link>
+        adipscing elitr, sed diam nonumy eirmod tempor
         invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       </p>
     </app-hero>
@@ -50,39 +53,40 @@
 </template>
 
 <script>
-import AppHero from '../app/AppHero.vue';
-import AppLink from '../app/AppLink.vue';
-import AppTeaser from '../app/AppTeaser.vue';
-import AppTeaserList from '../app/AppTeaserList.vue';
-import AppTeaserListItem from '../app/AppTeaserListItem.vue';
+  import AppHero from '../app/AppHero.vue';
+  import AppLink from '../app/AppLink.vue';
+  import AppTeaser from '../app/AppTeaser.vue';
+  import AppTeaserList from '../app/AppTeaserList.vue';
+  import AppTeaserListItem from '../app/AppTeaserListItem.vue';
 
-export default {
-  name: `PageHome`,
-  components: {
-    AppHero,
-    AppLink,
-    AppTeaser,
-    AppTeaserList,
-    AppTeaserListItem,
-  },
-};
+  export default {
+    name: `PageHome`,
+    components: {
+      AppHero,
+      AppLink,
+      AppTeaser,
+      AppTeaserList,
+      AppTeaserListItem,
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-.PageHome {
-  $section-spacing: 3em;
+  .PageHome {
+    $section-spacing: 3em;
 
-  &__teaserList {
-    margin-top: $section-spacing;
+    &__teaserList {
+      margin-top: $section-spacing;
+    }
+    .text {
+      text-transform: uppercase;
+      background: linear-gradient(to right, #30cfd0 0%, #330867 100%);
+      color: transparent;
+      -webkit-background-clip: text;
+      font: {
+        size: 100px;
+      }
+    ;
+    }
   }
-  .text {
-    text-transform: uppercase;
-    background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
-    color: transparent;
-    -webkit-background-clip: text;
-    font: {
-      size: 100px;
-    };
-  }
-}
 </style>

@@ -5,19 +5,19 @@
 </template>
 
 <script>
-export default {
-  name: `AppText`,
-};
+  export default {
+    name: `AppText`,
+  };
 </script>
 
 <style lang="scss" scoped>
-.AppText {
-  > :not(:first-child) {
-    margin-top: 1.25em;
-  }
+  .AppText {
+    > :not(:first-child) {
+      margin-top: 1.25em;
+    }
 
-  p {
-    line-height: 1.4;
+    p {
+      line-height: 1.4;
+    }
   }
-}
 </style>

@@ -58,25 +58,25 @@
 </template>
 
 <script>
-import AppHeadline from '../app/AppHeadline.vue';
-import AppIntro from '../app/AppIntro.vue';
-import AppText from '../app/AppText.vue';
+  import AppHeadline from '../app/AppHeadline.vue';
+  import AppIntro from '../app/AppIntro.vue';
+  import AppText from '../app/AppText.vue';
 
-export default {
-  name: `PageArticle`,
-  components: {
-    AppHeadline,
-    AppIntro,
-    AppText,
-  },
-};
+  export default {
+    name: `PageArticle`,
+    components: {
+      AppHeadline,
+      AppIntro,
+      AppText,
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-.PageArticle {
-  &__intro,
-  &__text {
-    margin-top: 1.5em;
+  .PageArticle {
+    &__intro,
+    &__text {
+      margin-top: 1.5em;
+    }
   }
-}
 </style>
