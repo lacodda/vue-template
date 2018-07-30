@@ -17,7 +17,7 @@ import AppHeader from '../app/AppHeader.vue';
 import AppFooter from '../app/AppFooter.vue';
 
 export default {
-  name: `LayoutDefault`,
+  name: 'LayoutDefault',
   components: {
     AppHeader,
     AppFooter,

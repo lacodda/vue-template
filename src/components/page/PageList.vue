@@ -71,7 +71,7 @@ import AppContentListItem from '../app/AppContentListItem.vue';
 import AppHero from '../app/AppHero.vue';
 
 export default {
-  name: `PageList`,
+  name: 'PageList',
   components: {
     AppContentList,
     AppContentListItem,

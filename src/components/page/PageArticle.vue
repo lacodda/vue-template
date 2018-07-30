@@ -63,7 +63,7 @@
   import AppText from '../app/AppText.vue';
 
   export default {
-    name: `PageArticle`,
+    name: 'PageArticle',
     components: {
       AppHeadline,
       AppIntro,

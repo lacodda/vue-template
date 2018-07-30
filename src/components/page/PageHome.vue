@@ -1,13 +1,13 @@
 <template>
   <div :class="$options.name">
-    <app-hero :action="{ to: { name: `article` }, label: `Click me!` }">
+    <app-hero :action="{ to: { name: 'article' }, label: 'Click me!' }">
       <template slot="headline">
         Welcome!
       </template>
       <h1 class="text">Hello</h1>
       <p>
         Lorem ipsum dolor sit amet,
-        <app-link :to="{ name: `list` }">
+        <app-link :to="{ name: 'list' }">
           consetetur
         </app-link>
         adipscing elitr, sed diam nonumy eirmod tempor
@@ -17,7 +17,7 @@
 
     <app-teaser-list :class="`${$options.name}__teaserList`">
       <app-teaser-list-item>
-        <app-teaser :action="{ to: { name: `article` }, label: `Read more` }">
+        <app-teaser :action="{ to: { name: 'article' }, label: 'Read more' }">
           <template slot="headline">
             Article
           </template>
@@ -33,7 +33,7 @@
         </app-teaser>
       </app-teaser-list-item>
       <app-teaser-list-item>
-        <app-teaser :action="{ to: { name: `list` }, label: `Read more` }">
+        <app-teaser :action="{ to: { name: 'list' }, label: 'Read more' }">
           <template slot="headline">
             List
           </template>
@@ -60,7 +60,7 @@
   import AppTeaserListItem from '../app/AppTeaserListItem.vue';
 
   export default {
-    name: `PageHome`,
+    name: 'PageHome',
     components: {
       AppHero,
       AppLink,
