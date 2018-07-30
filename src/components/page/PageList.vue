@@ -66,26 +66,26 @@
 </template>
 
 <script>
-import AppContentList from '../app/AppContentList.vue';
-import AppContentListItem from '../app/AppContentListItem.vue';
-import AppHero from '../app/AppHero.vue';
+  import AppContentList from '../app/AppContentList.vue';
+  import AppContentListItem from '../app/AppContentListItem.vue';
+  import AppHero from '../app/AppHero.vue';
 
-export default {
-  name: 'PageList',
-  components: {
-    AppContentList,
-    AppContentListItem,
-    AppHero,
-  },
-};
+  export default {
+    name: 'PageList',
+    components: {
+      AppContentList,
+      AppContentListItem,
+      AppHero,
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-.PageList {
-  $section-spacing: 3em;
+  .PageList {
+    $section-spacing: 3em;
 
-  &__contentList {
-    margin-top: $section-spacing;
+    &__contentList {
+      margin-top: $section-spacing;
+    }
   }
-}
 </style>

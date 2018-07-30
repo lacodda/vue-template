@@ -13,27 +13,27 @@
 </template>
 
 <script>
-import AppHeader from '../app/AppHeader.vue';
-import AppFooter from '../app/AppFooter.vue';
+  import AppHeader from '../app/AppHeader.vue';
+  import AppFooter from '../app/AppFooter.vue';
 
-export default {
-  name: 'LayoutDefault',
-  components: {
-    AppHeader,
-    AppFooter,
-  },
-};
+  export default {
+    name: 'LayoutDefault',
+    components: {
+      AppHeader,
+      AppFooter,
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/objects/wrapper.mixin';
+  @import '../../scss/objects/wrapper.mixin';
 
-.LayoutDefault {
-  &__main {
-    @include wrapper();
+  .LayoutDefault {
+    &__main {
+      @include wrapper();
 
-    padding-top: 3em;
-    padding-bottom: 4em;
+      padding-top: 3em;
+      padding-bottom: 4em;
+    }
   }
-}
 </style>

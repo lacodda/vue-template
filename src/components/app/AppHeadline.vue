@@ -7,31 +7,31 @@
 </template>
 
 <script>
-export default {
-  name: `AppHeadline`,
-  props: {
-    level: {
-      type: Number,
-      default: 1,
+  export default {
+    name: 'AppHeadline',
+    props: {
+      level: {
+        type: Number,
+        default: 1,
+      },
     },
-  },
-};
+  };
 </script>
 
 <style lang="scss" scoped>
-.AppHeadline {
-  font-weight: 500;
+  .AppHeadline {
+    font-weight: 500;
 
-  &--1 {
-    font-size: 3.375em;
-  }
+    &--1 {
+      font-size: 3.375em;
+    }
 
-  &--2 {
-    font-size: 2.25em;
-  }
+    &--2 {
+      font-size: 2.25em;
+    }
 
-  &--3 {
-    font-size: 1.5em;
+    &--3 {
+      font-size: 1.5em;
+    }
   }
-}
 </style>

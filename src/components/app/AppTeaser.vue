@@ -18,34 +18,34 @@
 </template>
 
 <script>
-import AppButton from './AppButton.vue';
-import AppHeadline from './AppHeadline.vue';
-import AppText from './AppText.vue';
+  import AppButton from './AppButton.vue';
+  import AppHeadline from './AppHeadline.vue';
+  import AppText from './AppText.vue';
 
-export default {
-  name: `AppTeaser`,
-  components: {
-    AppButton,
-    AppHeadline,
-    AppText,
-  },
-  props: {
-    action: {
-      type: Object,
+  export default {
+    name: 'AppTeaser',
+    components: {
+      AppButton,
+      AppHeadline,
+      AppText,
     },
-  },
-};
+    props: {
+      action: {
+        type: Object,
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/objects/card.mixin';
+  @import '../../scss/objects/card.mixin';
 
-.AppTeaser {
-  @include card();
+  .AppTeaser {
+    @include card();
 
-  &__text,
-  &__action {
-    margin-top: 1em;
+    &__text,
+    &__action {
+      margin-top: 1em;
+    }
   }
-}
 </style>

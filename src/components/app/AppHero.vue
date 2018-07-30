@@ -18,40 +18,40 @@
 </template>
 
 <script>
-import AppButton from './AppButton.vue';
-import AppHeadline from './AppHeadline.vue';
-import AppIntro from './AppIntro.vue';
+  import AppButton from './AppButton.vue';
+  import AppHeadline from './AppHeadline.vue';
+  import AppIntro from './AppIntro.vue';
 
-export default {
-  name: `AppHero`,
-  components: {
-    AppButton,
-    AppHeadline,
-    AppIntro,
-  },
-  props: {
-    action: {
-      type: Object,
+  export default {
+    name: 'AppHero',
+    components: {
+      AppButton,
+      AppHeadline,
+      AppIntro,
     },
-  },
-};
+    props: {
+      action: {
+        type: Object,
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/objects/wrapper.mixin';
+  @import '../../scss/objects/wrapper.mixin';
 
-.AppHero {
-  @include wrapper(s);
+  .AppHero {
+    @include wrapper(s);
 
-  text-align: center;
+    text-align: center;
 
-  &__intro {
-    margin-top: 1em;
+    &__intro {
+      margin-top: 1em;
+    }
+
+    &__action {
+      margin-top: 1em;
+      font-size: 1.25em;
+    }
   }
-
-  &__action {
-    margin-top: 1em;
-    font-size: 1.25em;
-  }
-}
 </style>

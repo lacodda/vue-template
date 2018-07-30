@@ -27,7 +27,7 @@
   import AppText from './AppText.vue';
 
   export default {
-    name: `AppContentListItem`,
+    name: 'AppContentListItem',
     components: {
       AppButton,
       AppHeadline,

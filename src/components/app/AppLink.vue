@@ -5,30 +5,30 @@
 </template>
 
 <script>
-export default {
-  name: `AppLink`,
-  props: {
-    to: {
-      type: Object,
+  export default {
+    name: 'AppLink',
+    props: {
+      to: {
+        type: Object,
+      },
     },
-  },
-};
+  };
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/settings/color';
+  @import '../../scss/settings/color';
 
-.AppLink {
-  text-decoration: underline;
+  .AppLink {
+    text-decoration: underline;
 
-  &,
-  &:visited {
-    color: $color-primary;
+    &,
+    &:visited {
+      color: $color-primary;
+    }
+
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
   }
-
-  &:focus,
-  &:hover {
-    text-decoration: none;
-  }
-}
 </style>
