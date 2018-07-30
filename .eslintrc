@@ -8,11 +8,10 @@
     "parser": "babel-eslint",
     "sourceType": "module"
   },
-  "extends": [
-    "airbnb-base",
-    "plugin:vue/recommended"
-  ],
+  "extends": ["airbnb-base", "plugin:vue/recommended"],
   "rules": {
-    "vue/require-default-prop": 0
-  }
+    "vue/require-default-prop": 0,
+    "flowtype-errors/show-errors": 2
+  },
+  "plugins": ["html", "flowtype-errors"]
 }
