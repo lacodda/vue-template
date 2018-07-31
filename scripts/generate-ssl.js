@@ -1,111 +1,156 @@
-#!/usr/bin/env node
+#! /usr/bin/env node
+const promisify = require('util').promisify;
+const exec = promisify(require('child_process').exec);
+const path = require('path');
 
-var express = require('express');
-var https = require('https');
-var http = require('http');
-var fs = require('fs');
-var path = require('path');
-
-//serve files from 2nd argument or current working directory of the
-var pathOfFolderToServe = process.cwd(); 
-
-var serverKey = __dirname + '/server.key';
-var serverCert = __dirname + '/server.crt';
-
-if (!fs.existsSync(serverKey) || !fs.existsSync(serverCert)) {
-	console.log('\n-----------------------------------------------------------');
-	console.log('Looks like you don\'t have Self Signed Cert and key!\n');
-	console.log('FOLLOW QUICK STEPS BELOW TO CREATE SELF SIGNED CERTS:');
-	console.log('(Note: these instructions are from the Heroku article: https://devcenter.heroku.com/articles/ssl-certificate-self)');
-
-	console.log('------------------------------------------------------------');
-	console.log('\n(Copy paste the below commands one by one)\n');
-	console.log('Step 1. openssl genrsa -des3 -passout pass:x -out '+__dirname+'/server.pass.key 2048 \n');
-	console.log('Step 2. openssl rsa -passin pass:x -in '+__dirname+'/server.pass.key -out '+__dirname+'/server.key \n');
-	console.log('Step 3. rm '+__dirname+'/server.pass.key \n');
-	console.log('Step 4. openssl req -new -key '+__dirname+'/server.key -out '+__dirname+'/server.csr                  (<----- Hit Enter to accept default values or enter your own) \n');
-	console.log('Step 5. openssl x509 -req -days 365 -in '+__dirname+'/server.csr -signkey '+__dirname+'/server.key -out '+__dirname+'/server.crt\n\n');
-
-	console.log('\nNote: If you get "permission denied" error, you may need to append "sudo" before each command.\n\n');
-
-	process.exit();
-}
-
-
-
-
-
-if (!pathOfFolderToServe) {
-	console.log('\n-------------------------------------------------------------');
-	console.log("\nError: Please enter path to the folder that needs to be served as the 1st parameter. \n\nRun it like this: node app.js <path-to-folder> ");
-	console.log('---------------------------------------------------------------\n');
-
-} else {
-
-var watch = require('node-watch');
-
-watch(pathOfFolderToServe, function(filename) {
-  console.log(filename, ' changed!!');
-  runReloadChrome();
-});
-
-process.addListener("uncaughtException", function (err) {
-   console.log('\n\nError: Too many files to monitor. Please narrow down to a subfolder with fewer files\nExiting.\n\n');
-    process.exit();
-});
-
-	// This line is from the Node.js HTTPS documentation.
-	var options = {
-		key: fs.readFileSync(serverKey),
-		cert: fs.readFileSync(serverCert)
-	};
-
-	// Create a service (the app object is just a callback).
-	var app = express();
-
-	app.use(express.static(pathOfFolderToServe));
-	app.use(express.directory(pathOfFolderToServe));
-
-
-	app.use(express.methodOverride());
-
-	// Create an HTTP service.
-	http.createServer(app).listen(4000);
-	// Create an HTTPS service identical to the HTTP service.
-	https.createServer(options, app).listen(3000);
-
-
-	console.log('1. Serving files in ' + pathOfFolderToServe + ' folder at https://localhost:3000/');
-	console.log('2. "Live Reload Browser": Simply run your app in the "1st tab of the 1st window" of Google Chrome browser to see it refresh when a file is changed.');
-}
-
-//function that runs apple script
-var spawn = require('child_process').spawn;
-var runAppleScript = function (script, callback) {
-    var osa = spawn("osascript", ["-e", script]);
-    var out = "";
-    var err = "";
-    osa.stdout.on('data', function (data) {
-        out += data;
-    });
-    osa.stderr.on('data', function (data) {
-        err += data;
-    });
-    osa.on('exit', function (code) {
-        // Ignore stdout (which shows the return value of the AppleScript code)
-        if (err.length > 0) {
-            console.log("STDERR: "+err);
-        }
-        if (callback) {
-            callback();
-        }
-    });
+const colors = {
+  white: '\x1b[37m',
+  green: '\x1b[32m',
+  cyan: '\x1b[36m',
+  red: '\x1b[31m',
+  default: '\x1b[0m',
 };
-var chromeAppName = "Google Chrome";
 
-//apple script to refresh chrome
-var runReloadChrome = runAppleScript.bind(null, '\
-    tell application "'+chromeAppName+'"\n\
-    tell first tab of first window to reload\n\
-    end tell\n\
-    ');
+const commands = {
+  mkdir: config => `mkdir -p ${path.resolve(config.targetDir)}`,
+  config: config => `cat > openssl.cnf <<-EOF
+[req]
+distinguished_name = req_distinguished_name
+x509_extensions = v3_req
+prompt = no
+[req_distinguished_name]
+CN = *.${config.hostname}${config.domain}
+[v3_req]
+keyUsage = keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = *.${config.hostname}${config.domain}
+DNS.2 = ${config.hostname}${config.domain}
+EOF`,
+
+  ssl: config => `openssl req \
+-new \
+-newkey rsa:2048 \
+-sha1 \
+-days 3650 \
+-nodes \
+-x509 \
+-keyout ${path.resolve(path.join(config.targetDir, 'ssl.key'))} \
+-out ${path.resolve(path.join(config.targetDir, 'ssl.crt'))} \
+-config openssl.cnf`,
+
+  clean: 'rm openssl.cnf',
+
+  keychain: config => `open /Applications/Utilities/Keychain\\ Access.app \
+${path.resolve(path.join(config.targetDir, 'ssl.crt'))}`,
+};
+
+function run(...commands) {
+  return Promise.all(commands.map((cmd) => exec(cmd)));
+}
+function runSeries(...commands) {
+  return commands.reduce(
+    (p, cmd) => p.then(() => exec(cmd)),
+    Promise.resolve()
+  );
+}
+
+function pause() {
+  return new Promise((resolve, reject) => {
+    process.stdin.setRawMode(true);
+    process.stdin.resume();
+    process.stdin.on('data', (buffer) => {
+      return buffer[0] === 3
+        ? reject('Ok, aborted opening Keychain Access and folder')
+        : resolve();
+    });
+  });
+}
+
+function isValidHostname(text) {
+  if (typeof text !== 'string' || !text.match(/^[a-zA-Z\-]+$/)) {
+    console.error(colors.red + `You did not pass in a valid hostname`);
+    process.exit(1);
+  }
+
+  return true;
+}
+
+function isValidDomain(text) {
+  if (typeof text !== 'string' || !text.match(/^[a-zA-Z]+$/)) {
+    console.error(colors.red + `You did not pass in a valid domain`);
+    process.exit(1);
+  }
+
+  return true;
+}
+
+function isValidTargetDir(text) {
+  if (typeof text !== 'string' || !text.match(/^[a-zA-Z\-]+$/)) {
+    console.error(colors.red + `You did not pass in a valid target directory`);
+    process.exit(1);
+  }
+
+  return true;
+}
+
+function logAndAbort(error) {
+  console.error(colors.red + `Something wrong happened, ${error.message}`);
+  process.exit(1);
+}
+
+function abort(message) {
+  console.log(colors.red + message);
+  process.exit(0);
+}
+
+const config = process.argv.reduce(
+  (currentConfig, val, index, array) => {
+    if (val === '--hostname' && isValidHostname(array[index + 1])) {
+      currentConfig.hostname = array[index + 1];
+    }
+
+    if (val === '--domain' && isValidDomain(array[index + 1])) {
+      currentConfig.domain = `.${array[index + 1]}`;
+    }
+
+    if (val === '--targetDir' && isValidTargetDir(array[index + 1])) {
+      currentConfig.targetDir = array[index + 1];
+    }
+
+    return currentConfig;
+  },
+  {
+    domain: '',
+    targetDir: 'ssl',
+    hostname: process
+      .cwd()
+      .split(path.sep)
+      .pop()
+  }
+);
+
+runSeries(
+  commands.mkdir(config),
+  commands.config(config),
+  commands.ssl(config),
+  commands.clean,
+)
+  .then(() => {
+    console.log(`
+${colors.green}✔ ${colors.white}Certificate for ${colors.green}*.${config.hostname}${config.domain} ${colors.white}created successfully!
+${colors.cyan}Press any key ${colors.white}to open Keychain Access, then:
+  1. Double click added certificate and expand the "Trust" section
+  2. Change to "Always trust" on first dropdown
+  3. If your certificate is not there you can drag and drop "ssl.crt" from this folder into Keychain Access
+${colors.cyan}Note! ${colors.white}Make sure the domain is routed to localhost.
+`);
+    return pause();
+  })
+  .catch(abort)
+  .then(() => run(commands.keychain))
+  .then(() => {
+    process.exit(0);
+  })
+  .catch(logAndAbort);

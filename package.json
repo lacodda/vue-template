@@ -26,7 +26,9 @@
     "build": "cross-env NODE_ENV=production webpack",
     "serve:dev": "cross-env NODE_ENV=development node bin/dev-server.js",
     "serve:production": "cross-env NODE_ENV=production node bin/spa-server.js",
-    "lint:scripts": "eslint --ext .js,.vue --ignore-path .gitignore ."
+    "lint:scripts": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "generate-ssl": "node ./scripts/generate-ssl --hostname localhost",
+    "add-generated-ssl": "open /Applications/Utilities/Keychain\\ Access.app ssl/ssl.crt"
   },
   "engines": {
     "node": ">=8"

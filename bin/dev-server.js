@@ -15,8 +15,8 @@ serve(argv, {
   },
   http2: true,
   https: {
-    key: readFileSync(resolve(__dirname, '../ssl/localhost.key')),
-    cert: readFileSync(resolve(__dirname, '../ssl/localhost.crt')),
+    key: readFileSync(resolve(__dirname, '../ssl/ssl.key')),
+    cert: readFileSync(resolve(__dirname, '../ssl/ssl.crt')),
   },
 }).then((server) => {
   server.on('listening', ({ serv, opt }) => {
