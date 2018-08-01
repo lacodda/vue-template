@@ -1,35 +1,23 @@
 #! /usr/bin/env node
-const promisify = require('util').promisify;
+const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
 const path = require('path');
+const fs = require('fs');
+
+const mkdir = promisify(fs.mkdir);
+const writeFile = promisify(fs.writeFile);
+const unlink = promisify(fs.unlink);
 
 const colors = {
   white: '\x1b[37m',
   green: '\x1b[32m',
   cyan: '\x1b[36m',
   red: '\x1b[31m',
-  default: '\x1b[0m',
+  default: '\x1b[0m'
 };
 
 const commands = {
-  mkdir: config => `mkdir -p ${path.resolve(config.targetDir)}`,
-  config: config => `cat > openssl.cnf <<-EOF
-[req]
-distinguished_name = req_distinguished_name
-x509_extensions = v3_req
-prompt = no
-[req_distinguished_name]
-CN = *.${config.hostname}${config.domain}
-[v3_req]
-keyUsage = keyEncipherment, dataEncipherment
-extendedKeyUsage = serverAuth
-subjectAltName = @alt_names
-[alt_names]
-DNS.1 = *.${config.hostname}${config.domain}
-DNS.2 = ${config.hostname}${config.domain}
-EOF`,
-
-  ssl: config => `openssl req \
+  ssl: (config) => `openssl req \
 -new \
 -newkey rsa:2048 \
 -sha1 \
@@ -40,15 +28,16 @@ EOF`,
 -out ${path.resolve(path.join(config.targetDir, 'ssl.crt'))} \
 -config openssl.cnf`,
 
-  clean: 'rm openssl.cnf',
-
-  keychain: config => `open /Applications/Utilities/Keychain\\ Access.app \
+  keychain: (config) => `open /Applications/Utilities/Keychain\\ Access.app \
 ${path.resolve(path.join(config.targetDir, 'ssl.crt'))}`,
+
+  echo: `echo 1`
 };
 
 function run(...commands) {
   return Promise.all(commands.map((cmd) => exec(cmd)));
 }
+
 function runSeries(...commands) {
   return commands.reduce(
     (p, cmd) => p.then(() => exec(cmd)),
@@ -96,7 +85,7 @@ function isValidTargetDir(text) {
 }
 
 function logAndAbort(error) {
-  console.error(colors.red + `Something wrong happened, ${error.message}`);
+  console.error(`${colors.red} Something wrong happened, ${error.message}`);
   process.exit(1);
 }
 
@@ -131,26 +120,68 @@ const config = process.argv.reduce(
   }
 );
 
-runSeries(
-  commands.mkdir(config),
-  commands.config(config),
-  commands.ssl(config),
-  commands.clean,
-)
-  .then(() => {
-    console.log(`
-${colors.green}✔ ${colors.white}Certificate for ${colors.green}*.${config.hostname}${config.domain} ${colors.white}created successfully!
-${colors.cyan}Press any key ${colors.white}to open Keychain Access, then:
-  1. Double click added certificate and expand the "Trust" section
-  2. Change to "Always trust" on first dropdown
-  3. If your certificate is not there you can drag and drop "ssl.crt" from this folder into Keychain Access
-${colors.cyan}Note! ${colors.white}Make sure the domain is routed to localhost.
-`);
-    return pause();
-  })
-  .catch(abort)
-  .then(() => run(commands.keychain))
-  .then(() => {
-    process.exit(0);
-  })
-  .catch(logAndAbort);
+const opensslConfig = (config) => `[req]
+distinguished_name = req_distinguished_name
+x509_extensions = v3_req
+prompt = no
+[req_distinguished_name]
+CN = ${config.hostname}${config.domain}
+[v3_req]
+keyUsage = keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = ${config.hostname}${config.domain}
+DNS.2 = ${config.hostname}${config.domain}`;
+
+const exists = (file) =>
+  new Promise((res, rej) => {
+    fs.access(file, (err) => {
+      if (err) {
+        if (err.code === 'ENOENT') {
+          return res(false);
+        }
+
+        return rej(err);
+      }
+
+      res(true);
+    });
+  });
+
+(async () => {
+  const opensslCnfPath = 'openssl.cnf';
+  const targetDir = path.resolve(config.targetDir);
+  const existsTargetDir = await exists(targetDir);
+
+  if (!existsTargetDir) {
+    await mkdir(targetDir);
+  }
+
+  await writeFile(path.resolve(opensslCnfPath), opensslConfig(config));
+
+  await runSeries(commands.ssl(config));
+
+  await unlink(opensslCnfPath);
+
+  console.log(`
+  ${colors.green}✔ ${colors.white}Certificate for ${colors.green}${
+    config.hostname
+  }${config.domain} ${colors.white}created successfully!
+  ${colors.cyan}Press any key ${colors.white}to open Keychain Access, then:
+    1. Double click added certificate and expand the "Trust" section
+    2. Change to "Always trust" on first dropdown
+    3. If your certificate is not there you can drag and drop "ssl.crt" from this folder into Keychain Access
+  ${colors.cyan}Note! ${
+    colors.white
+  }Make sure the domain is routed to localhost.
+  `);
+
+  pause()
+    .catch(abort)
+    .then(() => run(commands.keychain))
+    .then(() => {
+      process.exit(0);
+    })
+    .catch(logAndAbort);
+})();
