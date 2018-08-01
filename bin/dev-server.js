@@ -10,9 +10,6 @@ serve(argv, {
   ...config,
   clipboard: false,
   port: 8888,
-  hot: {
-    https: true,
-  },
   http2: true,
   https: {
     key: readFileSync(resolve(__dirname, '../ssl/ssl.key')),
