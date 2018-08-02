@@ -12,6 +12,10 @@ build/
 .idea/
 .vscode/
 jsconfig.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
 
 # Temporary
 tmp/

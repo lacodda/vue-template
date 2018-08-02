@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const { readFileSync } = require('fs');
 const { resolve } = require('path');
 const serve = require('webpack-serve');
@@ -15,7 +16,7 @@ serve(argv, {
     key: readFileSync(resolve(__dirname, '../ssl/ssl.key')),
     cert: readFileSync(resolve(__dirname, '../ssl/ssl.crt')),
   },
-}).then((server) => {
+}).then(server => {
   server.on('listening', ({ serv, opt }) => {
     console.log('happy fun time');
   });
