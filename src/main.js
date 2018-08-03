@@ -1,12 +1,21 @@
 import Vue from 'vue';
-
+import store from 'store';
+import SvgIconComponent from 'components/svg-icon';
+import App from 'components/App.vue';
 import router from './router';
+import 'styles/main.scss';
 
-import App from './components/App.vue';
+Vue.component('svg-icon', SvgIconComponent);
 
+// Disable warnings about dev mode
 Vue.config.productionTip = false;
 
+// Initialize Vue
+/* eslint-disable no-new */
 new Vue({
-  render: h => h(App),
+  el: '#app',
   router,
-}).$mount('#app');
+  store,
+  components: { App },
+  template: '<App/>',
+});

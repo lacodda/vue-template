@@ -13,7 +13,14 @@
         adipscing elitr, sed diam nonumy eirmod tempor
         invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       </p>
+
+      <a class="btn btn--flex btn--primary" @click="openModal">
+        <svg-icon name="combo-chart"/>
+        Open Modal
+      </a>
     </app-hero>
+
+
 
     <app-teaser-list :class="`${$options.name}__teaserList`">
       <app-teaser-list-item>
@@ -49,24 +56,40 @@
         </app-teaser>
       </app-teaser-list-item>
     </app-teaser-list>
+    <modal />
   </div>
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
   import AppHero from '../app/AppHero.vue';
   import AppLink from '../app/AppLink.vue';
   import AppTeaser from '../app/AppTeaser.vue';
   import AppTeaserList from '../app/AppTeaserList.vue';
   import AppTeaserListItem from '../app/AppTeaserListItem.vue';
+  import Modal from 'components/modal';
 
   export default {
     name: 'PageHome',
+
     components: {
+      Modal,
       AppHero,
       AppLink,
       AppTeaser,
       AppTeaserList,
       AppTeaserListItem,
+    },
+
+    methods: {
+      ...mapActions(['showModal']),
+      openModal() {
+        const modal = {
+          title: 'List',
+          // component: 'Modal',
+        };
+        this.showModal(modal);
+      },
     },
   };
 </script>

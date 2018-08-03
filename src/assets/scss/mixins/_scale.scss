@@ -1,0 +1,12 @@
+@mixin scale($name, $content: ()) {
+  @include media-breakpoint-down($name) {
+    @each $scale, $factor in $scale-factors {
+      @if $scale == $name {
+        @each $key, $value in $content {
+          #{$key}: calc-scale($value, $factor);
+        }
+      }
+    }
+    @content;
+  }
+}
