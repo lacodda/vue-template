@@ -28,8 +28,10 @@ const createLintingRule = () => ({
 });
 
 const config = {
-  // context: alias(),
-  entry: alias('src/main.js'),
+  context: alias(),
+  entry: {
+    app: './src/main.js',
+  },
   mode: env,
   output: {
     publicPath: '/',
