@@ -14,13 +14,11 @@
         invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       </p>
 
-      <a class="btn btn--flex btn--primary" @click="openModal">
-        <svg-icon name="combo-chart"/>
+      <button class="btn btn--flex btn--primary" @click="openModal">
+        <svg-icon name="help_outline" color="white" class="icon"/>
         Open Modal
-      </a>
+      </button>
     </app-hero>
-
-
 
     <app-teaser-list :class="`${$options.name}__teaserList`">
       <app-teaser-list-item>
@@ -111,5 +109,11 @@
       }
     ;
     }
+  }
+  .btn--primary {
+    margin: 0 auto;
+  }
+  .icon {
+    margin-right: .5rem;
   }
 </style>

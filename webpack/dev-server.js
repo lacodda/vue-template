@@ -9,6 +9,7 @@ const argv = {};
 
 serve(argv, {
   ...config,
+  open: 'chrome',
   clipboard: false,
   port: 8888,
   http2: true,

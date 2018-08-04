@@ -13,7 +13,7 @@
           <div class="modal__content">
             <div class="modal__header">
               <h5 class="modal__title">{{ title }}</h5>
-              <svg-icon name="delete"
+              <svg-icon name="close"
                         size="24"
                         class="modal__close"
                         @click.native="hideModal"/>

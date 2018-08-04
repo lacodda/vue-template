@@ -1,5 +1,5 @@
 <template>
-  <svg :height="size" :width="size">
+  <svg :height="size" :width="size" :fill="color">
     <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="getIcon"></use>
   </svg>
 </template>
@@ -17,6 +17,10 @@
         type: String,
         default: '20',
       },
+      color: {
+        type: String,
+        default: '#000000',
+      }
     },
 
     data: () => ({
