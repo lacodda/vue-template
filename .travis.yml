@@ -1,20 +1,19 @@
 sudo: false
+compiler: clang
 language: node_js
 
 node_js:
-  - "9"
   - "8"
 
 branches:
   only:
-    - master
-
-os:
-  - linux
-  - osx
+  - master
 
 install:
-  - travis_retry npm install
+  - travis_retry npm install;
 
 script:
-  - travis_retry npm test
+  - travis_retry npm test;
+
+after_success: 
+  - travis_retry npm run coverage
