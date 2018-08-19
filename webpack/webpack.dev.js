@@ -21,5 +21,5 @@ module.exports = merge(
     use: [parts.autoprefix(), parts.cssPreprocessorLoader],
   }),
   parts.loadImages({ include: paths.img.src }),
-  parts.loadJS({ include: paths.js.src }),
+  parts.loadJS({ include: paths.src }),
 );

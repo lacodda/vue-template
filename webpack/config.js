@@ -3,9 +3,9 @@ module.exports = {
   src: 'src',
   dist: 'dist',
   entry: {
-    app: 'js/index.js',
+    app: 'index.js',
   },
-  pages: 'templates/pages',
+  pages: '',
   assets: {
     js: {
       src: 'js',
