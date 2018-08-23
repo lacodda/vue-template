@@ -43,7 +43,6 @@
   }
 
   &__dialog {
-
     .modal--top & {
       @include center-block;
       position: relative;
@@ -148,11 +147,13 @@
     @include box-shadow($modal-content-box-shadow-xs);
     // Remove focus outline from opened modal
     outline: 0;
-    .modal--sticky--left &, .modal--sticky--right & {
+    .modal--sticky--left &,
+    .modal--sticky--right & {
       height: 100%;
       overflow-y: auto;
     }
-    .modal--adaptive--left &, .modal--adaptive--right & {
+    .modal--adaptive--left &,
+    .modal--adaptive--right & {
       height: 100%;
       overflow-y: auto;
     }
@@ -195,10 +196,10 @@
 
     // Easily place margin between footer elements
     > :not(:first-child) {
-      margin-left: .4rem;
+      margin-left: 0.4rem;
     }
     > :not(:last-child) {
-      margin-right: .4rem;
+      margin-right: 0.4rem;
     }
   }
 

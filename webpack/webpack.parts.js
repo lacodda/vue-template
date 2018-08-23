@@ -4,6 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
+const nodeSassMagicImporter = require('node-sass-magic-importer');
+const autoprefixer = require('autoprefixer');
 
 const publicPath = '/';
 
@@ -131,11 +134,36 @@ exports.loadCSS = ({ include, exclude, use = [] } = {}) => ({
         exclude,
 
         use: [
+          'vue-style-loader',
+          // {
+          //   loader: 'style-loader',
+          // },
+          // ...sharedCSSLoaders,
+          // ...use,
           {
-            loader: 'style-loader',
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
           },
-          ...sharedCSSLoaders,
-          ...use,
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                autoprefixer({
+                  browsers: ['ie >= 8', 'last 4 version'],
+                }),
+              ],
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              importer: nodeSassMagicImporter(),
+              sourceMap: true,
+            },
+          },
         ],
       },
     ],
@@ -151,11 +179,7 @@ exports.extractCSS = ({ include, exclude, options, use = [] } = {}) => ({
         include,
         exclude,
 
-        use: [
-          MiniCssExtractPlugin.loader,
-          ...sharedCSSLoaders,
-          ...use,
-        ],
+        use: [MiniCssExtractPlugin.loader, ...sharedCSSLoaders, ...use],
       },
     ],
   },
@@ -173,9 +197,7 @@ exports.loadSvg = ({ include, exclude } = {}) => ({
         include,
         exclude,
 
-        use: [
-          'svg-sprite-loader',
-        ],
+        use: ['svg-sprite-loader'],
       },
     ],
   },
@@ -278,6 +300,23 @@ exports.loadFonts = ({ include, exclude, options } = {}) => ({
   },
 });
 
+exports.loadVue = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.vue$/,
+
+        include,
+        exclude,
+
+        loader: 'vue-loader',
+        options,
+      },
+    ],
+  },
+  plugins: [new VueLoaderPlugin()],
+});
+
 exports.loadJS = ({ include, exclude, options } = {}) => ({
   module: {
     rules: [
@@ -302,9 +341,7 @@ exports.minifyJS = options => ({
 
 exports.page = ({
   path = '',
-  template = require.resolve(
-    'html-webpack-plugin/default_index.ejs',
-  ),
+  template = require.resolve('html-webpack-plugin/default_index.ejs'),
   title,
   entry,
   chunks,

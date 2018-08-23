@@ -3,7 +3,7 @@ module.exports = {
   src: 'src',
   dist: 'dist',
   entry: {
-    app: 'index.js',
+    app: 'main.js',
   },
   pages: '',
   assets: {

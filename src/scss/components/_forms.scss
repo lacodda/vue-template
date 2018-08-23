@@ -1,5 +1,6 @@
 // Inputs: text, Textarea
-@include form-input('
+@include form-input(
+  '
   input[type=text],
   input[type=email],
   input[type=password],
@@ -7,10 +8,11 @@
   input[type=datetime],
   input[type=number],
   textarea
-');
+'
+);
 
-@include form-validation-state("valid", $form-feedback-valid-color);
-@include form-validation-state("invalid", $form-feedback-invalid-color);
+@include form-validation-state('valid', $form-feedback-valid-color);
+@include form-validation-state('invalid', $form-feedback-invalid-color);
 
 // Form groups
 .form-group {
@@ -18,7 +20,7 @@
 }
 
 .form-text {
-  display:    block;
+  display: block;
   margin-top: $form-text-margin-top;
 }
 
@@ -32,5 +34,3 @@
 .checkbox {
   @include checkbox-radio(checkbox);
 }
-
-

@@ -16,10 +16,28 @@ module.exports = merge(
     host: process.env.HOST,
     port: process.env.PORT,
   }),
-  parts.loadCSS({
-    include: paths.css.src,
-    use: [parts.autoprefix(), parts.cssPreprocessorLoader],
-  }),
+
   parts.loadImages({ include: paths.img.src }),
+  parts.loadVue({
+    include: paths.src,
+    options: {
+      cssSourceMap: true,
+      cacheBusting: true,
+      transformToRequire: {
+        video: ['src', 'poster'],
+        source: 'src',
+        img: 'src',
+        image: 'xlink:href',
+      },
+    },
+  }),
   parts.loadJS({ include: paths.src }),
+  parts.loadCSS({
+    // include: paths.css.src,
+    include: paths.src,
+    use: [
+      parts.autoprefix(),
+      parts.cssPreprocessorLoader,
+    ],
+  }),
 );
