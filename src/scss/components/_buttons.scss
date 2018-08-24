@@ -3,25 +3,25 @@
 //
 
 .btn {
-  font-size:      $font-size-base;
-  font-weight:    $btn-font-weight;
-  text-align:     center;
-  white-space:    nowrap;
+  font-size: $font-size-base;
+  font-weight: $btn-font-weight;
+  text-align: center;
+  white-space: nowrap;
   vertical-align: middle;
-  user-select:    none;
-  border:         $btn-border-width solid transparent;
+  user-select: none;
+  border: $btn-border-width solid transparent;
   // padding:        $btn-padding-y $btn-padding-x;
-  padding:        .5rem 1.2rem;
-  line-height:    1;// $btn-line-height;
+  padding: 0.5rem 1.2rem;
+  line-height: 1; // $btn-line-height;
 
   &:not(.btn--flex) {
     display: inline-block;
   }
   &.btn--flex {
-    display:         flex;
+    display: flex;
     justify-content: space-between;
-    align-items:     center;
-    align-content:   center;
+    align-items: center;
+    align-content: center;
   }
 
   &:not(.btn--rounded) {
@@ -33,8 +33,6 @@
 
   @include transition($btn-transition);
 
-
-
   // Share hover and focus styles
   @include hover-focus {
     text-decoration: none;
@@ -42,7 +40,7 @@
 
   &:not(.btn--flat):focus,
   &:not(.btn--flat).btn--focus {
-    outline:    0;
+    outline: 0;
     box-shadow: $btn-focus-box-shadow;
   }
 
@@ -83,7 +81,8 @@ fieldset:disabled a.btn {
   .btn--#{$color} {
     @include button-variant(
       $background: map-get($value, background-color),
-      $border: map-get($value, border-color));
+      $border: map-get($value, border-color)
+    );
   }
 }
 
@@ -102,27 +101,27 @@ fieldset:disabled a.btn {
 
 // Make a button look and behave like a link
 .btn-link {
-  font-weight:      $font-weight-normal;
-  color:            $link-color;
+  font-weight: $font-weight-normal;
+  color: $link-color;
   background-color: transparent;
 
   @include hover {
-    color:            $link-hover-color;
-    text-decoration:  $link-hover-decoration;
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
     background-color: transparent;
-    border-color:     transparent;
+    border-color: transparent;
   }
 
   &:focus,
   &.btn--focus {
     text-decoration: $link-hover-decoration;
-    border-color:    transparent;
-    box-shadow:      none;
+    border-color: transparent;
+    box-shadow: none;
   }
 
   &:disabled,
   &.btn--disabled {
-    color:          $btn-link-disabled-color;
+    color: $btn-link-disabled-color;
     pointer-events: none;
   }
 }
@@ -133,7 +132,7 @@ fieldset:disabled a.btn {
 
 .btn--block {
   display: block;
-  width:   100%;
+  width: 100%;
 
   // Vertically space out multiple block buttons
   + .btn--block {
@@ -142,9 +141,9 @@ fieldset:disabled a.btn {
 }
 
 // Specificity overrides
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
+input[type='submit'],
+input[type='reset'],
+input[type='button'] {
   &.btn--block {
     width: 100%;
   }

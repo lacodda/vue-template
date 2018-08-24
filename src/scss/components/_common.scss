@@ -2,84 +2,100 @@
 // Headings
 //
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-    margin-bottom: $headings-margin-bottom;
-    font-family:   $headings-font-family;
-    font-weight:   $headings-font-weight;
-    line-height:   $headings-line-height;
-    color:         $headings-color;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin-bottom: $headings-margin-bottom;
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
 }
 
-h1, .h1 {
-    font-size: $h1-font-size;
+h1,
+.h1 {
+  font-size: $h1-font-size;
 }
 
-h2, .h2 {
-    font-size: $h2-font-size;
+h2,
+.h2 {
+  font-size: $h2-font-size;
 }
 
-h3, .h3 {
-    font-size: $h3-font-size;
+h3,
+.h3 {
+  font-size: $h3-font-size;
 }
 
-h4, .h4 {
-    font-size: $h4-font-size;
+h4,
+.h4 {
+  font-size: $h4-font-size;
 }
 
-h5, .h5 {
-    font-size: $h5-font-size;
+h5,
+.h5 {
+  font-size: $h5-font-size;
 }
 
-h6, .h6 {
-    font-size: $h6-font-size;
+h6,
+.h6 {
+  font-size: $h6-font-size;
 }
 
 .font-light {
-    font-weight: $font-weight-light;
+  font-weight: $font-weight-light;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
-.no-break, .no-wrap {
-    white-space: nowrap;
+.no-break,
+.no-wrap {
+  white-space: nowrap;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .red {
-    color: $red;
+  color: $red;
 }
 .green {
-    color: $green;
+  color: $green;
 }
 .orange {
-    color: $orange;
+  color: $orange;
 }
 
 .clearfix:after {
-    content: "";
-    clear: both;
-    display: table;
+  content: '';
+  clear: both;
+  display: table;
 }
 
 .valign-middle {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .icon:before {
-    margin: 0;
+  margin: 0;
 }
 
 .clear {
-    clear: both;
+  clear: both;
 }
-
 
 //
 //
@@ -104,9 +120,7 @@ h6, .h6 {
 //    width: 100%;
 //}
 
-
 //
-
 
 //
 //
@@ -190,8 +204,6 @@ h6, .h6 {
 //    }
 //}
 
-
-
 //
 
 //.widget {
@@ -202,24 +214,23 @@ h6, .h6 {
 //}
 
 .draggable {
-    //z-index: 1;
-    //bottom: 0;
-    //right: 0;
-    //background-origin: content-box;
-    position: absolute;
-    //width: calc(100% + 2px);
-    //height: 40px;
-    //top: 0;
-    //left: 0;
-    background: rgba(242, 242, 242, 1) no-repeat bottom right;
-    //background-origin: content-box;
-    //box-sizing: border-box;
-    //cursor: move;
-    //margin-left: -1px;
-    //border: 1px solid rgba(102, 204, 204, 1);
-    //margin-top: -1px;
-    //padding: 0 10px 8px;
-
+  //z-index: 1;
+  //bottom: 0;
+  //right: 0;
+  //background-origin: content-box;
+  position: absolute;
+  //width: calc(100% + 2px);
+  //height: 40px;
+  //top: 0;
+  //left: 0;
+  background: rgba(242, 242, 242, 1) no-repeat bottom right;
+  //background-origin: content-box;
+  //box-sizing: border-box;
+  //cursor: move;
+  //margin-left: -1px;
+  //border: 1px solid rgba(102, 204, 204, 1);
+  //margin-top: -1px;
+  //padding: 0 10px 8px;
 }
 
 //.no-drag {

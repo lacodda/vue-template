@@ -3,10 +3,10 @@
 //
 
 .alert {
-  position:      relative;
-  padding:       $alert-padding-y $alert-padding-x;
+  position: relative;
+  padding: $alert-padding-y $alert-padding-x;
   margin-bottom: $alert-margin-bottom;
-  border:        $alert-border-width solid transparent;
+  border: $alert-border-width solid transparent;
   @include border-radius($alert-border-radius);
 }
 
@@ -47,6 +47,7 @@
     @include alert-variant(
       $background: theme-color-level($color, background-color, $alert-bg-level),
       $border: theme-color-level($color, border-color, $alert-border-level),
-      $color: theme-color-level($color, color, $alert-color-level));
+      $color: theme-color-level($color, color, $alert-color-level)
+    );
   }
 }

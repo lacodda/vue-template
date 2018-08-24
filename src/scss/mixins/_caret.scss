@@ -1,6 +1,4 @@
-@mixin caret(
-  $position: after,
-  $direction: down) {
+@mixin caret($position: after, $direction: down) {
   @if $enable-caret {
     @if $position == before {
       @include before {
@@ -8,8 +6,9 @@
           $direction: $direction,
           $color: $caret-color,
           $width: $caret-width,
-          $height: $caret-width);
-        margin-right:   1rem;
+          $height: $caret-width
+        );
+        margin-right: 1rem;
         vertical-align: middle;
       }
     } @else {
@@ -18,8 +17,9 @@
           $direction: $direction,
           $color: $caret-color,
           $width: $caret-width,
-          $height: $caret-width);
-        margin-left:    1rem;
+          $height: $caret-width
+        );
+        margin-left: 1rem;
         vertical-align: middle;
       }
     }

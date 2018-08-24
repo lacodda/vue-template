@@ -8,7 +8,6 @@
   width: $size;
   height: $size;
   overflow: hidden;
-
   @include before-after {
     position: absolute;
     height: 0.1rem;
@@ -17,15 +16,12 @@
     left: 0;
     background: $color;
   }
-
   @include before {
     transform: rotate(45deg);
   }
-
   @include after {
     transform: rotate(-45deg);
   }
-
   &--active,
   &:hover,
   &:active {

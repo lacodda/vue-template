@@ -38,16 +38,21 @@
 // @param {String} $search - Substring to replace
 // @param {String} $replace ('') - New value
 // @return {String} - Updated string
-@function str-replace($string, $search, $replace: "") {
+@function str-replace($string, $search, $replace: '') {
   // to string
   $string: inspect($string);
-  
+
   $index: str-index($string, $search);
-  
+
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
   }
-  
+
   @return $string;
 }
 
@@ -55,32 +60,32 @@
 @function explode($string, $dem) {
   // to string
   $string: inspect($string);
-  
+
   $list: ();
   $sum: str-length($string);
-  
+
   @for $i from 1 through $sum {
     $str: str-index($string, $dem);
-    
+
     @if str-length($string) >= 1 and $str == null {
       $list: append($list, $string);
       $string: '';
     }
-    
+
     @if type-of($str) == number {
       $each: str-slice($string, 0, ($str - 1));
       $list: append($list, $each);
       $string: str-slice($string, ($str + 1), $sum);
     }
   }
-  
+
   @return $list;
 }
 
 // Расчет параметров масштабирования
 @function calc-scale($string, $factor) {
   $list: ();
-  
+
   @each $value in explode($string, ' ') {
     @if $value == 'auto' or $value == '0' {
       $list: append($list, $value);
@@ -88,7 +93,7 @@
       $list: append($list, calc(#{$value} * #{$factor}));
     }
   }
-  
+
   @return $list;
 }
 
@@ -97,9 +102,9 @@
   $r: red($color);
   $g: green($color);
   $b: blue($color);
-  
+
   $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
-  
+
   @if ($yiq >= $yiq-contrasted-threshold) {
     @return $yiq-text-dark;
   } @else {
@@ -107,20 +112,24 @@
   }
 }
 
-@function theme-color($theme: "default") {
+@function theme-color($theme: 'default') {
   @return map-get($theme-colors, $theme);
 }
 
-@function element-color($theme: "default", $key: "background-color") {
+@function element-color($theme: 'default', $key: 'background-color') {
   @return map-get(theme-color($theme), $key);
 }
 
 // Request a theme color level
-@function theme-color-level($theme: "default", $element: "background-color", $level: 0) {
+@function theme-color-level(
+  $theme: 'default',
+  $element: 'background-color',
+  $level: 0
+) {
   $color: element-color($theme, $element);
   $color-base: if($level > 0, $black, $white);
   $level: abs($level);
-  
+
   @return mix($color-base, $color, $level * $theme-color-interval);
 }
 
@@ -143,15 +152,15 @@
 @function sqrt($r) {
   $x0: 1;
   $x1: $x0;
-  
+
   @for $i from 1 through 10 {
     $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
     $x0: $x1;
   }
-  
+
   @return $x1;
 }
 
 @function unicode($str) {
-  @return unquote("\"") + $str + unquote("\"");
+  @return unquote('"') + $str + unquote('"');
 }

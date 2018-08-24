@@ -5,14 +5,14 @@
   @include icon-size;
 }
 
-$icon-clock: "\e900";
-$icon-update-arrow: "\e901";
-$icon-update-arrows: "\e902";
-$icon-bar-chart: "\e903";
-$icon-settings: "\e904";
-$icon-magnifiying-glass: "\e905";
-$icon-history: "\e906";
-$icon-full-size: "\e907";
+$icon-clock: '\e900';
+$icon-update-arrow: '\e901';
+$icon-update-arrows: '\e902';
+$icon-bar-chart: '\e903';
+$icon-settings: '\e904';
+$icon-magnifiying-glass: '\e905';
+$icon-history: '\e906';
+$icon-full-size: '\e907';
 
 .icon-clock {
   &:before {

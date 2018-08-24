@@ -12,13 +12,11 @@
     width: 0;
     z-index: 100;
   }
-
   33.3333% {
     left: 0;
     width: 100%;
     z-index: 10;
   }
-
   to {
     left: 0;
     width: 100%;
@@ -28,21 +26,23 @@
 // Spinner Wave
 
 @-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% {
+  0%,
+  40%,
+  100% {
     -webkit-transform: scaleY(0.4);
   }
-
   20% {
     -webkit-transform: scaleY(1);
   }
 }
 
 @keyframes sk-stretchdelay {
-  0%, 40%, 100% {
+  0%,
+  40%,
+  100% {
     transform: scaleY(0.4);
     -webkit-transform: scaleY(0.4);
   }
-
   20% {
     transform: scaleY(1);
     -webkit-transform: scaleY(1);
@@ -159,4 +159,3 @@
     animation-fill-mode: both;
   }
 }
-

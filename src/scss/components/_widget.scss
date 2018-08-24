@@ -43,7 +43,7 @@
     line-height: 1;
 
     &-main {
-      margin: 1rem 0 .5rem;
+      margin: 1rem 0 0.5rem;
       font-size: 1.2rem; // $panel-title-main-font-size;
       font-weight: $panel-title-main-font-weight;
     }
@@ -53,12 +53,12 @@
       color: $gray-300;
     }
   }
-  
+
   &__options {
     display: flex;
-    margin: .5rem 0 0 auto; // $panel-options-margin-left;    margin-left: auto;
+    margin: 0.5rem 0 0 auto; // $panel-options-margin-left;    margin-left: auto;
     > * {
-      margin-left: .3rem;
+      margin-left: 0.3rem;
       color: $gray-300;
     }
     svg {

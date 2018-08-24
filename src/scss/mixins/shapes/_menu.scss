@@ -11,6 +11,5 @@
   height: $height;
   width: $width;
   border-radius: $border-radius;
-
   @content;
 }
