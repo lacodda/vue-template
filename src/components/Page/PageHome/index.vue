@@ -15,7 +15,7 @@
       </p>
 
       <button class="btn btn--flex btn--primary" @click="openModal">
-        <svg-icon name="help_outline" color="white" class="icon"/>
+        <svg-icon name="favorite" color="white" class="icon"/>
         Open Modal
       </button>
     </app-hero>
