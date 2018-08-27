@@ -51,7 +51,7 @@ module.exports = merge([
         i18n: alias('src/i18n'),
         shared: alias('src/shared'),
         services: alias('src/shared/services'),
-        util: alias('src/shared/util'),
+        util: alias('src/util'),
         styles: alias('src/scss'),
         images: alias('src/assets/images'),
       },

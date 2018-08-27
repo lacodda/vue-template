@@ -43,6 +43,7 @@
   }
 
   &__dialog {
+
     .modal--top & {
       @include center-block;
       position: relative;
@@ -61,6 +62,17 @@
       right: 0; // side panel
       top: 0; // side panel
       height: 100%; // side panel
+
+      // for the side panel, the elements in the footer are lined up in a column
+      .modal__footer {
+        flex-direction: column;
+        > * {
+          margin: 0;
+          &:not(:last-child) {
+            margin-bottom: .4rem;
+          }
+        }
+      }
     }
 
     .modal--adaptive--left & {
@@ -147,13 +159,11 @@
     @include box-shadow($modal-content-box-shadow-xs);
     // Remove focus outline from opened modal
     outline: 0;
-    .modal--sticky--left &,
-    .modal--sticky--right & {
+    .modal--sticky--left &, .modal--sticky--right & {
       height: 100%;
       overflow-y: auto;
     }
-    .modal--adaptive--left &,
-    .modal--adaptive--right & {
+    .modal--adaptive--left &, .modal--adaptive--right & {
       height: 100%;
       overflow-y: auto;
     }
@@ -167,6 +177,13 @@
     padding: $modal-header-padding;
     //border-bottom: $modal-header-border-width solid $modal-header-border-color;
     @include border-radius($modal-content-border-radius, top);
+
+    &--sticky {
+      position: sticky;
+      top: 0;
+      background-color: $modal-content-bg;
+      z-index: 1;
+    }
   }
 
   &__title {
@@ -194,12 +211,19 @@
     padding: $modal-inner-padding;
     //border-top: $modal-footer-border-width solid $modal-footer-border-color;
 
+    &--sticky {
+      position: sticky;
+      bottom: 0;
+      background-color: $modal-content-bg;
+      z-index: 1;
+    }
+
     // Easily place margin between footer elements
     > :not(:first-child) {
-      margin-left: 0.4rem;
+      margin-left: .4rem;
     }
     > :not(:last-child) {
-      margin-right: 0.4rem;
+      margin-right: .4rem;
     }
   }
 

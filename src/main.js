@@ -1,11 +1,15 @@
 import Vue from 'vue';
 import store from 'store';
-import SvgIconComponent from 'components/svg-icon';
-import App from 'components/App.vue';
+import 'components';
 import router from './router';
 import 'styles/main.scss';
+import App from './App';
 
-Vue.component('svg-icon', SvgIconComponent);
+// Import all svg icons from assets/svg
+const req = require.context('./assets/svg', true, /\.svg$/);
+req.keys().forEach(key => {
+  req(key);
+});
 
 // Disable warnings about dev mode
 Vue.config.productionTip = false;
@@ -18,4 +22,13 @@ new Vue({
   store,
   components: { App },
   template: '<App/>',
+});
+
+// Initialize Event Bus
+const EventBus = new Vue();
+
+Object.defineProperties(Vue.prototype, {
+  $bus: {
+    get: () => EventBus,
+  },
 });

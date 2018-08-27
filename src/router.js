@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import PageHome from './components/page/PageHome.vue';
-import PageArticle from './components/page/PageArticle.vue';
-import PageList from './components/page/PageList.vue';
+import PageHome from 'components/Page/PageHome';
+import PageArticle from 'components/Page/PageArticle';
+import PageList from 'components/Page/PageList';
 
 Vue.use(VueRouter);
 

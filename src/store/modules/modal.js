@@ -2,23 +2,24 @@
 
 import { ActionContext } from 'vuex';
 
-// INTERFACES
+/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                   INTERFACES                                                      *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 export interface ModalData {
-  title: string;
   widgetId: string;
-  component: string,
-  type: string,
+  component: string;
 }
 
 interface ModalState {
   stack: ModalData[];
 }
 
-interface ModalInterface extends ActionContext<ModalState> {
-}
+interface ModalInterface extends ActionContext<ModalState> {}
 
-// TYPES
+/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                        TYPES                                                      *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 const Types = {
   SHOW_MODAL: 'SHOW_MODAL',
@@ -26,19 +27,28 @@ const Types = {
   REPLACE_MODAL: 'REPLACE_MODAL',
 };
 
-// STATE
+/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                        STATE                                                      *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 const state: ModalState = {
   stack: [],
 };
 
-// GETTERS
+/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                       GETTERS                                                     *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 const getters = {
+  modal: ({ stack }: ModalState) => (id: number) => stack[id],
   currentModal: ({ stack }: ModalState) => stack[stack.length - 1],
+  modalsList: ({ stack }: ModalState) => stack,
+  modalsCount: ({ stack }: ModalState) => stack.length,
 };
 
-// ACTIONS
+/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                       ACTIONS                                                     *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 const actions = {
   showModal({ commit }: ModalInterface, data: ModalData) {
@@ -54,7 +64,9 @@ const actions = {
   },
 };
 
-// MUTATIONS
+/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                     MUTATIONS                                                     *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 const mutations = {
   [Types.SHOW_MODAL]({ stack }: ModalState, data: ModalData): void {
@@ -71,7 +83,9 @@ const mutations = {
   },
 };
 
-// EXPORTS
+/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                     EXPORTS                                                       *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 export default {
   Types,
