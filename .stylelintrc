@@ -10,7 +10,7 @@
     "selector-no-qualifying-type": true,
     "selector-combinator-space-after": "always",
     "selector-attribute-operator-space-before": "never",
-    "selector-attribute-operator-space-after": "always",
+    "selector-attribute-operator-space-after": "never",
     "selector-attribute-brackets-space-inside": "never",
     "declaration-block-trailing-semicolon": "always",
     "at-rule-no-unknown": [
@@ -24,7 +24,9 @@
           "each",
           "include",
           "mixin",
-          "content"
+          "content",
+          "return",
+          "at-root"
         ]
       }
     ],
@@ -37,7 +39,7 @@
     "rule-empty-line-before": [
       "always",
       {
-        "except": ["inside-block"]
+        "except": ["inside-block", "after-single-line-comment"]
       }
     ],
     "at-rule-empty-line-before": [

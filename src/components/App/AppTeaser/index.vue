@@ -30,10 +30,10 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../scss/objects/card.mixin';
+  // @import '../../../scss/objects/card.mixin';
 
   .AppTeaser {
-    @include card();
+    // @include card();
 
     &__text,
     &__action {

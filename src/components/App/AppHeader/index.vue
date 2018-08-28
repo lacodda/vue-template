@@ -35,16 +35,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/settings/color';
-@import '../../../scss/objects/wrapper.mixin';
+// @import '../../../scss/settings/color';
+// @import '../../../scss/objects/wrapper.mixin';
 
 .AppHeader {
   padding-top: 1em;
   padding-bottom: 1em;
-  background: $color-secondary;
+  // background: $color-secondary;
 
   &__wrapper {
-    @include wrapper();
+    // @include wrapper();
 
     display: flex;
     align-items: center;

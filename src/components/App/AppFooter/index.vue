@@ -18,17 +18,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/settings/color';
-@import '../../../scss/objects/wrapper.mixin';
+// @import '../../../scss/settings/color';
+// @import '../../../scss/objects/wrapper.mixin';
 
 .AppFooter {
   padding-top: 1em;
   padding-bottom: 1em;
-  background-color: $color-secondary;
+  // background-color: $color-secondary;
   text-align: center;
 
   &__wrapper {
-    @include wrapper();
+    // @include wrapper();
   }
 }
 </style>

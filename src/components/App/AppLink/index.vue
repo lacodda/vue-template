@@ -16,14 +16,14 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../scss/settings/color';
+  // @import '../../../scss/settings/color';
 
   .AppLink {
     text-decoration: underline;
 
     &,
     &:visited {
-      color: $color-primary;
+      // color: $color-primary;
     }
 
     &:focus,

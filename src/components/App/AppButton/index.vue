@@ -19,14 +19,14 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../scss/settings/color';
+  // @import '../../../scss/settings/color';
 
   .AppButton {
     display: inline-block;
     padding: 0.5em 0.75em;
     border: none;
     border-radius: 0.25em;
-    background-color: $color-primary;
+    // background-color: $color-primary;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -38,7 +38,7 @@
 
     &:focus,
     &:hover {
-      background-color: lighten($color-primary, 10%);
+      // background-color: lighten($color-primary, 10%);
     }
   }
 </style>

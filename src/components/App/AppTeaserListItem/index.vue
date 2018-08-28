@@ -11,9 +11,9 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../scss/objects/layout.mixin';
+  // @import '../../../scss/objects/layout.mixin';
 
   .AppTeaserListItem {
-    @include layout__item(auto, 16em);
+    // @include layout__item(auto, 16em);
   }
 </style>

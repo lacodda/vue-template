@@ -11,9 +11,9 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../scss/objects/layout.mixin';
+  // @import '../../../scss/objects/layout.mixin';
 
   .AppTeaserList {
-    @include layout();
+    // @include layout();
   }
 </style>

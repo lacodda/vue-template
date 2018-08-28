@@ -4,9 +4,9 @@
   margin-right: auto;
 }
 
-@mixin center-vertically {
-  position: absolute;
+@mixin center-vertically($position: absolute) {
+  position: $position;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
 }

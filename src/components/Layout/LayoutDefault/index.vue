@@ -5,7 +5,7 @@
     <nav-menu/>
 
     <slot name="header">
-      <app-header/>
+      <!-- <app-header/> -->
     </slot>
 
     <main :class="`${$options.name}__main`">
@@ -13,7 +13,7 @@
     </main>
 
     <slot name="footer">
-      <app-footer/>
+      <!-- <app-footer/> -->
     </slot>
 
     <modals-list/>
@@ -49,11 +49,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/objects/wrapper.mixin';
+// @import '../../../scss/objects/wrapper.mixin';
 
 .LayoutDefault {
   &__main {
-    @include wrapper();
+    // @include wrapper();
+    position: absolute;
+    width: 100%;
+    height: 100%;
 
     padding-top: 3em;
     padding-bottom: 4em;
@@ -89,7 +92,6 @@ button {
   border: none;
   width: 36px;
   height: 30px;
-  outline: none;
   transition: opacity 0.2s ease-out;
   &:before {
     content: '';
@@ -128,6 +130,9 @@ button {
   }
   &:hover {
     opacity: 1;
+  }
+  &:focus {
+    outline: none;
   }
   .open & {
     opacity: 1;

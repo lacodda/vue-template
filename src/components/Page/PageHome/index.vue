@@ -1,5 +1,11 @@
 <template>
-  <div :class="$options.name">
+  <div class="page__container">
+    <svg class="page__logo" width="300" height="300">
+      <use xlink:href="#lyrn"></use>
+    </svg>
+    <h1 class="page__header">Hello Vue.js</h1>
+  </div>
+  <!-- <div :class="$options.name">
     <app-hero :action="{ to: { name: 'article' }, label: 'Click me!' }">
       <template slot="headline">
         Welcome!
@@ -54,7 +60,7 @@
         </app-teaser>
       </app-teaser-list-item>
     </app-teaser-list>
-  </div>
+  </div> -->
 </template>
 
 <script>

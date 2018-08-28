@@ -30,10 +30,10 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../scss/objects/wrapper.mixin';
+  // @import '../../../scss/objects/wrapper.mixin';
 
   .AppHero {
-    @include wrapper(s);
+    // @include wrapper(s);
 
     text-align: center;
 

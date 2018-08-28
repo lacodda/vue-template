@@ -4,6 +4,7 @@ import 'components';
 import router from './router';
 import 'styles/main.scss';
 import App from './App';
+import lyrn from './assets/images/lyrn.svg';
 
 // Import all svg icons from assets/svg
 const req = require.context('./assets/svg', true, /\.svg$/);

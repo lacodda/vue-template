@@ -28,18 +28,18 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../scss/objects/card.mixin';
-  @import '../../../scss/objects/layout.mixin';
+  // @import '../../../scss/objects/card.mixin';
+  // @import '../../../scss/objects/layout.mixin';
 
   .AppContentListItem {
-    @include card();
+    // @include card();
 
     &__wrap {
-      @include layout();
+      // @include layout();
     }
 
     &__figure {
-      @include layout__item();
+      // @include layout__item();
 
       img {
         display: block;
@@ -47,7 +47,7 @@
     }
 
     &__description {
-      @include layout__item(max, 14em);
+      // @include layout__item(max, 14em);
     }
 
     &__text {
@@ -55,7 +55,7 @@
     }
 
     &__actions {
-      @include layout__item();
+      // @include layout__item();
 
       align-self: center;
     }
