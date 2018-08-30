@@ -1,6 +1,6 @@
 <template>
   <div> 
-    <modal-vuex v-for="(item, index) in modals" :key="index" :id="index"/>
+    <app-modal-vuex v-for="(item, index) in modals" :key="index" :id="index"/>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import { mapGetters } from 'vuex';
 import ModalVuex from './ModalVuex';
 
 export default {
-  name: 'modals-list',
+  name: 'app-modals-list',
 
   components: {
     ModalVuex,

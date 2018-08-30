@@ -1,7 +1,6 @@
 import path from 'path';
 import Vue from 'vue';
-import upperFirst from 'lodash/upperFirst';
-import camelCase from 'lodash/camelCase';
+import * as _ from 'lodash';
 
 // https://webpack.js.org/guides/dependency-management/#require-context
 const requireWidgetComponent = require.context(
@@ -17,9 +16,11 @@ requireWidgetComponent.keys().forEach(fileName => {
   // Get the component config
   const componentConfig = requireWidgetComponent(fileName);
   // get component name founded on parent directory name
-  let componentName = path.basename(path.dirname(fileName));
-  // Get the PascalCase version of the component name
-  componentName = upperFirst(camelCase(componentName));
+  let componentName = _.chain(path.dirname(fileName))
+    .camelCase()
+    .upperFirst()
+    .value();
+
   // Globally register the component
   Vue.component(componentName, componentConfig.default || componentConfig);
 });

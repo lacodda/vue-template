@@ -2,7 +2,7 @@
   <div :class="$options.name">
 
     <button class="menu-toggle" @click="menuToggle"></button>
-    <nav-menu/>
+    <app-nav-menu/>
     
     <div class="container">
       <div class="menu" @click="hambergerOpen = !hambergerOpen">
@@ -22,7 +22,7 @@
       <!-- <app-footer/> -->
     </slot>
 
-    <modals-list/>
+    <app-modals-list/>
   
   </div>
 </template>

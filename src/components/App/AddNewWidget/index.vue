@@ -29,7 +29,7 @@
 import { mapActions } from "vuex";
 
 export default {
-  name: "add-new-widget",
+  name: "app-add-new-widget",
 
   props: {
     visible: {

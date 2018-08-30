@@ -51,7 +51,7 @@
 import { zIndex } from "util/helpers";
 
 export default {
-  name: "modal",
+  name: "AppModal",
 
   props: {
     visible: {
