@@ -1,14 +1,8 @@
 <template>
   <div :class="$options.name">
 
-    <button class="menu-toggle" @click="menuToggle"></button>
-    <app-nav-menu/>
-    
-    <div class="container">
-      <div class="menu" @click="hambergerOpen = !hambergerOpen">
-        <div class="hambergerIcon" :class="{open: hambergerOpen}" ></div>
-      </div>
-    </div>
+    <app-overlay-nav/>
+    <app-burger-button/>
 
     <slot name="header">
       <!-- <app-header/> -->
@@ -42,6 +36,7 @@ export default {
     menuToggle() {
       const el = document.body;
       const open = el.classList.contains('open');
+      this.hambergerOpen = !this.hambergerOpen;
 
       if (!open) {
         // Add to body class 'open'
@@ -64,10 +59,8 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-
     padding-top: 3em;
     padding-bottom: 4em;
-
     transition: 0.2s ease-out;
 
     .open & {
@@ -75,196 +68,5 @@ export default {
       transition: transform 0.2s 0.41s ease-out;
     }
   }
-}
-
-$color: rgb(51, 8, 103);
-$color2: linear-gradient(to right, rgb(48, 207, 208) 0%, rgb(51, 8, 103) 100%);
-
-@mixin position-center {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-}
-
-button {
-  opacity: 0.6;
-  background-color: transparent;
-  position: fixed;
-  z-index: 2;
-  top: 24px;
-  left: 24px;
-  border: none;
-  width: 36px;
-  height: 30px;
-  transition: opacity 0.2s ease-out;
-  &:before {
-    content: '';
-    @include position-center;
-    right: auto;
-    width: 100%;
-    background: linear-gradient(
-      to bottom,
-      $color,
-      $color 20%,
-      transparent 20%,
-      transparent 40%,
-      $color 40%,
-      $color 60%,
-      transparent 60%,
-      transparent 80%,
-      $color 80%,
-      $color 100%
-    );
-    transition: opacity 0.2s ease-out, width 0.2s 0.2s ease-out;
-  }
-  &:after {
-    opacity: 0;
-    content: '×';
-    color: white;
-    position: absolute;
-    top: 16px;
-    left: -4px;
-    font-family: Arial, sans-serif;
-    font-size: 76px;
-    line-height: 0;
-    transition: opacity 0.4s ease-out;
-  }
-  &:active {
-    transform: translateY(2px);
-  }
-  &:hover {
-    opacity: 1;
-  }
-  &:focus {
-    outline: none;
-  }
-  .open & {
-    opacity: 1;
-    &:before {
-      opacity: 0;
-      width: 0;
-    }
-    &:after {
-      opacity: 1;
-      transform: translate3d(0, 0, 0) rotate(360deg);
-      transition: transform 0.4s 1s ease-out, opacity 0.4s 1s ease-out;
-    }
-  }
-}
-
-$t: 0.2s;
-$tf: 0.3s;
-$delay: 0.2s;
-
-.container {
-  position: fixed;
-  z-index: 2;
-  top: 18px;
-  right: 28px;
-  margin: auto;
-}
-.menu {
-  height: 40px;
-  width: 40px;
-  position: relative;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.hambergerIcon {
-  height: 5px;
-  width: 35px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50px;
-  background-color: #4a2545;
-  // transform: translate(-50%,-50%) rotate(0deg);
-  animation: rotateBack $t ease-out forwards;
-  // animation-direction: reverse;
-  // animation-direction: reverse; // transform: translate(-50%,-50%) rotate(0deg);
-  // transition: all ease 0.5s;
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    height: inherit;
-    border-radius: inherit;
-    background-color: inherit;
-    margin: auto;
-    width: 100%;
-    transition: all ease 0.5s;
-  }
-  &::before {
-    top: -10px;
-    left: 0;
-    transform-origin: center;
-    // animation: rotate $t $delay ease-out forwards;
-  }
-  &::after {
-    bottom: -10px;
-    left: 0;
-    transform-origin: center;
-    animation: slideToCenterY $t ease-out forwards;
-  }
-}
-.open {
-  // transform: translate(-50%,-50%) rotate(135deg);
-  // animation: rotate $t ease-out;
-  animation: rotate $t ease-out forwards;
-  // animation-direction: reverse;
-  &::before {
-    top: 0;
-    animation: slideToCenterY $t ease-out forwards,
-      rotate3 $tf $delay ease-out forwards;
-    // transform: translate(0, 0%) rotate(-90deg);
-  }
-  &::after {
-    bottom: 0;
-    transform: translate(0, 0%) rotate(-90deg);
-  }
-}
-@keyframes rotateBack {
-  from {
-    transform: translate(-50%, -50%) rotate(135deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-}
-@keyframes rotate45 {
-  to {
-    transform: translate(-50%, -50%) rotate(135deg);
-  }
-}
-@keyframes rotate3 {
-  to {
-    // transform: translate(0, 0%) rotate(450deg);
-    transform: translate(0, 0%) rotate(90deg);
-  }
-}
-@keyframes rotate {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(135deg);
-  }
-}
-@keyframes slideToCenterY {
-  to {
-    transform: translateY(0);
-  }
-  // 60% {
-  // }
-  // 100% {
-  // }
 }
 </style>

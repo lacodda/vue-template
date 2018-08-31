@@ -6,7 +6,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "app-modal-vuex",
+  name: "modal-vuex",
 
   props: {
     id: {

@@ -13,7 +13,7 @@
           <div class="modal__content">
             <div class="modal__header" :class="{ 'modal__header--sticky': stickyHeader }">
               <slot name="header"></slot>
-              <svg-icon name="close"
+              <app-svg-icon name="close"
                         size="24"
                         class="modal__close"
                         @click.native="modalClose"/>

@@ -14,18 +14,18 @@ export default new VueRouter({
       component: PageHome,
       title: 'Home',
     },
-    // {
-    //   name: 'article',
-    //   path: '/article',
-    //   component: PageArticle,
-    //   title: 'Article',
-    // },
-    // {
-    //   name: 'list',
-    //   path: '/list',
-    //   component: PageList,
-    //   title: 'List',
-    // },
+    {
+      name: 'article',
+      path: '/article',
+      component: PageArticle,
+      title: 'Article',
+    },
+    {
+      name: 'list',
+      path: '/list',
+      component: PageList,
+      title: 'List',
+    },
   ],
   mode: 'history',
 });

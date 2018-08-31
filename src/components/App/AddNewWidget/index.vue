@@ -1,5 +1,5 @@
 <template>
-  <modal :visible="visible" @onModalClose="modalClose()" class="add-new-widget__modal">
+  <app-modal :visible="visible" @onModalClose="modalClose()" class="add-new-widget__modal">
 
     <template slot="header">
       <div class="modal__title">
@@ -22,7 +22,7 @@
       <button class="btn btn--primary" type="button">4</button>
     </template>
 
-  </modal>  
+  </app-modal>  
 </template>
 
 <script>
@@ -43,7 +43,7 @@ export default {
 
     addWidget() {
       const modal = {
-        component: "add-new-widget",
+        component: "app-add-new-widget",
         widgetId: "Top_Rule_Widget",
       };
       this.showModal(modal);

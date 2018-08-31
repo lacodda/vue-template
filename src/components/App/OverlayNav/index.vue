@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'AppNavMenu',
+  name: 'AppOverlayNav',
 
   computed: {
     routes() {

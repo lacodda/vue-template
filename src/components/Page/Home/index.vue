@@ -1,9 +1,14 @@
 <template>
   <div class="page__container">
-    <svg class="page__logo" width="300" height="300">
+    <!-- <svg class="page__logo" width="300" height="300">
       <use xlink:href="#lyrn"></use>
-    </svg>
+    </svg> -->
     <h1 class="page__header">Hello Vue.js</h1>
+
+    <button class="btn btn--flex btn--primary" @click="openModal">
+      <app-svg-icon name="favorite" color="white" class="icon"/>
+      Open Modal
+    </button>
   </div>
   <!-- <div :class="$options.name">
     <app-hero :action="{ to: { name: 'article' }, label: 'Click me!' }">
@@ -73,7 +78,7 @@ export default {
     ...mapActions(['showModal']),
     openModal() {
       const modal = {
-        component: 'add-new-widget',
+        component: 'app-add-new-widget',
       };
       this.showModal(modal);
     },

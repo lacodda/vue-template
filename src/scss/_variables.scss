@@ -18,6 +18,23 @@ $orange: #fd7e14 !default;
 $yellow: #ffc107 !default;
 $green: #28a745 !default;
 
+// Options
+//------------------------------------------------------------------------------------
+$enable-rounded: false !default;
+$enable-shadows: true !default;
+
+// Grid breakpoints
+//------------------------------------------------------------------------------------
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px,
+) !default;
+
 // Body
 //------------------------------------------------------------------------------------
 
@@ -46,6 +63,8 @@ $spacer: 1rem !default;
 //------------------------------------------------------------------------------------
 
 $border-width: 0.1rem !default;
+$border-radius: 0.3rem !default;
+$border-radius-rounded: 100rem !default;
 
 // Fonts
 //------------------------------------------------------------------------------------
@@ -86,3 +105,48 @@ $table-caption-color: $gray-400;
 //------------------------------------------------------------------------------------
 
 $label-margin-bottom: 0.5rem;
+
+// Z-index
+//------------------------------------------------------------------------------------
+
+$zindex-modal-backdrop: 1040 !default;
+$zindex-modal: 1050 !default;
+
+// Components
+//------------------------------------------------------------------------------------
+
+// Modal
+//------------------------------------------------------------------------------------
+$modal-inner-padding: 1.6rem !default;
+
+$modal-dialog-margin: 0.8rem !default;
+$modal-dialog-margin-y-sm-up: 2.8rem !default;
+
+$modal-title-line-height: $line-height-base !default;
+
+$modal-content-bg: $white !default;
+$modal-content-border-color: rgba($black, 0.2) !default;
+$modal-content-border-width: $border-width !default;
+$modal-content-border-radius: $border-radius !default;
+$modal-content-box-shadow-xs: 0 0.4rem 0.8rem rgba($black, 0.5) !default;
+$modal-content-box-shadow-sm-up: 0 0.8rem 1.6rem rgba($black, 0.5) !default;
+
+$modal-backdrop-bg: $black !default;
+$modal-backdrop-opacity: 0.5 !default;
+$modal-header-border-color: $gray-200 !default;
+$modal-footer-border-color: $modal-header-border-color !default;
+$modal-header-border-width: $modal-content-border-width !default;
+$modal-footer-border-width: $modal-header-border-width !default;
+$modal-header-padding: 1.6rem !default;
+
+$modal-widget-panel-header-padding: 1rem 1rem 0 2.2rem !default;
+$modal-widget-panel-body-padding: 0 2.2rem 0.3rem !default;
+$modal-widget-panel-footer-padding: 0 !default;
+
+$modal-width: 32rem !default;
+
+$modal-lg: 800px !default;
+$modal-md: 500px !default;
+$modal-sm: 300px !default;
+
+$modal-transition: transform 0.3s ease-out !default;

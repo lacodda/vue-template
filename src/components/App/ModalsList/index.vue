@@ -1,6 +1,6 @@
 <template>
   <div> 
-    <app-modal-vuex v-for="(item, index) in modals" :key="index" :id="index"/>
+    <modal-vuex v-for="(item, index) in modals" :key="index" :id="index"/>
   </div>
 </template>
 
