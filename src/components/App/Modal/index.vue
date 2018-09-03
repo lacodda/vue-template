@@ -48,10 +48,10 @@
 </template>
 
 <script>
-import { zIndex } from "util/helpers";
+import { zIndex } from 'util/helpers';
 
 export default {
-  name: "AppModal",
+  name: 'AppModal',
 
   props: {
     visible: {
@@ -60,7 +60,7 @@ export default {
     },
     side: {
       type: String,
-      default: "",
+      default: '',
     },
     stickyHeader: {
       type: Boolean,
@@ -73,9 +73,9 @@ export default {
   },
 
   data: () => ({
-    cssClass: "",
-    enterActiveClass: "",
-    leaveActiveClass: "",
+    cssClass: '',
+    enterActiveClass: '',
+    leaveActiveClass: '',
     modalStyle: {},
     backdropStyle: {},
   }),
@@ -92,33 +92,33 @@ export default {
   },
 
   created() {
-    const escapeHandler = (e) => {
-      if (e.key === "Escape" && this.visible) {
+    const escapeHandler = e => {
+      if (e.key === 'Escape' && this.visible) {
         this.modalClose();
       }
     };
-    document.addEventListener("keydown", escapeHandler);
-    this.$once("hook:destroyed", () => {
-      document.removeEventListener("keydown", escapeHandler);
+    document.addEventListener('keydown', escapeHandler);
+    this.$once('hook:destroyed', () => {
+      document.removeEventListener('keydown', escapeHandler);
     });
   },
 
   methods: {
     modalClose() {
-      this.$emit("onModalClose");
+      this.$emit('onModalClose');
     },
 
     setCssClass(side) {
       switch (side) {
-        case "right":
-          this.cssClass = "modal--sticky--right";
-          this.enterActiveClass = "animation__fade-in-right";
-          this.leaveActiveClass = "animation__fade-out-right";
+        case 'right':
+          this.cssClass = 'modal--sticky--right';
+          this.enterActiveClass = 'modal__component--fade-in-right';
+          this.leaveActiveClass = 'modal__component--fade-out-right';
           break;
         default:
-          this.cssClass = "";
-          this.enterActiveClass = "animation__fade-in-down";
-          this.leaveActiveClass = "animation__fade-out-up";
+          this.cssClass = '';
+          this.enterActiveClass = 'modal__component--slide-up-in';
+          this.leaveActiveClass = 'modal__component--slide-up-out';
       }
     },
   },

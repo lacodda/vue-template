@@ -13,11 +13,6 @@
   &--show {
     display: block;
   }
-  &:not(&--top):not(&--sticky--left):not(&--sticky--right):not(&--adaptive--left):not(&--adaptive--center):not(&--adaptive--right) {
-    .modal__dialog {
-      @include center-vertically(relative);
-    }
-  }
   &__component {
     position: fixed;
     top: 0;
@@ -36,6 +31,24 @@
     .modal-open & {
       overflow-x: hidden;
       overflow-y: auto;
+    }
+
+    // Animations
+    &--fade-in-right {
+      animation: fade-in-right 0.3s;
+      animation-fill-mode: both;
+    }
+    &--fade-out-right {
+      animation: fade-out-right 0.3s;
+      animation-fill-mode: both;
+    }
+    &--slide-up-in {
+      animation: fade-in 0.3s, slide-up-in 0.3s;
+      animation-fill-mode: both;
+    }
+    &--slide-up-out {
+      animation: fade-out 0.3s, slide-up-out 0.3s;
+      animation-fill-mode: both;
     }
   }
   // Header
@@ -62,7 +75,6 @@
     justify-content: flex-end; // Right align buttons with flex property because text-align doesn't work on flex items
     padding: $modal-inner-padding;
     //border-top: $modal-footer-border-width solid $modal-footer-border-color;
-
     &--sticky {
       position: sticky;
       bottom: 0;
@@ -82,17 +94,16 @@
   &__dialog {
     .modal--top & {
       @include center-block;
+
       position: relative;
       top: 7rem;
     }
-
     .modal--sticky--left & {
       position: absolute; // side panel
       left: 0; // side panel
       top: 0; // side panel
       height: 100%; // side panel
     }
-
     .modal--sticky--right & {
       position: absolute; // side panel
       right: 0; // side panel
@@ -110,7 +121,6 @@
         }
       }
     }
-
     .modal--adaptive--left & {
       position: absolute;
       left: 0;
@@ -124,9 +134,9 @@
       //   max-height: 90%;
       // }
     }
-
     .modal--adaptive--center & {
       @include center-vertically;
+
       height: 100%;
       overflow: auto;
 
@@ -136,7 +146,6 @@
       //   max-height: 90%;
       // }
     }
-
     .modal--adaptive--right & {
       position: absolute;
       right: 0;
@@ -150,21 +159,7 @@
       // }
     }
 
-    &.widget-panel {
-      .modal__header {
-        flex: 0 0 auto;
-        padding: $modal-widget-panel-header-padding;
-      }
-      .modal__body {
-        padding: $modal-widget-panel-body-padding;
-      }
-      .modal__footer {
-        padding: $modal-widget-panel-footer-padding;
-      }
-    }
-
     width: $modal-width;
-
     margin: $modal-dialog-margin;
     // allow clicks to pass through for custom click handling to close modal
     pointer-events: none;
@@ -178,7 +173,11 @@
     //  transform: translate(0, 0);
     //}
   }
-
+  &:not(&--top):not(&--sticky--left):not(&--sticky--right):not(&--adaptive--left):not(&--adaptive--center):not(&--adaptive--right) {
+    .modal__dialog {
+      @include center-vertically(relative);
+    }
+  }
   &__content {
     position: relative;
     display: flex;
@@ -206,16 +205,13 @@
       overflow-y: auto;
     }
   }
-
   &__title {
     margin-bottom: 0;
     line-height: $modal-title-line-height;
   }
-
   &__close {
     cursor: pointer;
   }
-
   &__body {
     position: relative;
     // Enable `flex-grow: 1` so that the body take up as much space as possible
@@ -223,7 +219,6 @@
     flex: 1 1 auto;
     padding: $modal-inner-padding;
   }
-
   &__backdrop {
     position: fixed;
     top: 0;
@@ -233,20 +228,32 @@
     z-index: $zindex-modal-backdrop;
     background-color: $modal-backdrop-bg;
     opacity: $modal-backdrop-opacity;
-
     // Fade for backdrop
     &--fade-in {
       @include fade($from: 0, $to: $modal-backdrop-opacity);
+
       animation-name: fade-0-0_5;
       animation-duration: 0.3s;
       animation-fill-mode: both;
     }
-
     &--fade-out {
       @include fade($from: $modal-backdrop-opacity, $to: 0);
+
       animation-name: fade-0_5-0;
       animation-duration: 0.3s;
       animation-fill-mode: both;
+    }
+  }
+  &.widget-panel {
+    .modal__header {
+      flex: 0 0 auto;
+      padding: $modal-widget-panel-header-padding;
+    }
+    .modal__body {
+      padding: $modal-widget-panel-body-padding;
+    }
+    .modal__footer {
+      padding: $modal-widget-panel-footer-padding;
     }
   }
 
@@ -258,15 +265,12 @@
       //margin: $modal-dialog-margin-y-sm-up auto;
       margin: 0; // side panel
     }
-
     .modal-dialog-centered {
       min-height: calc(100% - (#{$modal-dialog-margin-y-sm-up} * 2));
     }
-
     &__content {
       @include box-shadow($modal-content-box-shadow-sm-up);
     }
-
     &__sm {
       max-width: $modal-sm;
     }
