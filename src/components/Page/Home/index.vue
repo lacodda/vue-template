@@ -9,6 +9,8 @@
       <app-svg-icon name="favorite" color="white" class="icon"/>
       Open Modal
     </button>
+
+    <app-chart :data="data"/>
   </div>
   <!-- <div :class="$options.name">
     <app-hero :action="{ to: { name: 'article' }, label: 'Click me!' }">
@@ -73,6 +75,43 @@ import { mapActions } from 'vuex';
 
 export default {
   name: 'PageHome',
+
+  data() {
+    return {
+      data: [
+            {
+                id: 1,
+                name: '1',
+                color: 'red',
+                activeTimeSum: 20,
+            },
+            {
+                id: 2,
+                name: '2',
+                color: 'purple',
+                activeTimeSum: 50,
+            },
+            {
+                id: 3,
+                name: '3',
+                color: '#999',
+                activeTimeSum: 5,
+            },
+            {
+                id: 4,
+                name: '4',
+                color: 'orange',
+                activeTimeSum: 10,
+            },
+            {
+                id: 5,
+                name: '5',
+                color: 'blue',
+                activeTimeSum: 15,
+            }
+        ],
+    }
+  },
 
   methods: {
     ...mapActions(['showModal']),
