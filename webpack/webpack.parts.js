@@ -1,7 +1,6 @@
 const PurifyCSSPlugin = require('purifycss-webpack');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const { VueLoaderPlugin } = require('vue-loader');
@@ -82,7 +81,7 @@ exports.lintJS = ({ include, exclude, options }) => ({
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|vue)(\?.*)?$/i,
         include,
         exclude,
         enforce: 'pre',
@@ -224,11 +223,27 @@ exports.extractSvg = ({ include, exclude, options } = {}) => ({
   plugins: [new SpriteLoaderPlugin()],
 });
 
+exports.loadMedia = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i,
+        include,
+        exclude,
+        use: {
+          loader: 'url-loader',
+          options,
+        },
+      },
+    ],
+  },
+});
+
 exports.loadImages = ({ include, exclude, options } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif)(\?.*)?$/i,
         include,
         exclude,
         use: {
@@ -244,7 +259,7 @@ exports.optimizeImages = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif)(\?.*)?$/i,
 
         include,
         exclude,
@@ -286,7 +301,7 @@ exports.loadFonts = ({ include, exclude, options } = {}) => ({
     rules: [
       {
         // Capture eot, ttf, woff, and woff2
-        test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(eot|ttf|otf|woff2?)(\?.*)?$/i,
 
         include,
         exclude,
@@ -337,22 +352,4 @@ exports.minifyJS = options => ({
   optimization: {
     minimizer: [new UglifyJsPlugin(options)],
   },
-});
-
-exports.page = ({
-  path = '',
-  template = require.resolve('html-webpack-plugin/default_index.ejs'),
-  title,
-  entry,
-  chunks,
-} = {}) => ({
-  entry,
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: `${path && path + '/'}index.html`,
-      template,
-      title,
-      chunks,
-    }),
-  ],
 });

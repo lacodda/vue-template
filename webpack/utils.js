@@ -62,7 +62,7 @@ exports.getPaths = ({
  * @param {*} path
  * @param {*} regexp
  */
-exports.generateHtmlPlugins = (path, regexp = /.*/) => {
+exports.generateHtmlPlugins = (path, regexp = /.*/, minify = false) => {
   // Read files in template directory
   const templateFiles = fs.readdirSync(path);
 
@@ -79,6 +79,16 @@ exports.generateHtmlPlugins = (path, regexp = /.*/) => {
       new HTMLWebpackPlugin({
         filename: `${name}.html`,
         template: resolve(join(path, item)),
+        inject: true,
+        minify: minify
+          ? {
+              removeComments: true,
+              collapseWhitespace: true,
+              removeAttributeQuotes: true,
+              // More options:
+              // https://github.com/kangax/html-minifier#options-quick-reference
+            }
+          : false,
       }),
     );
 

@@ -61,6 +61,7 @@
     "eslint-loader": "^2.1.0",
     "eslint-plugin-compat": "^2.5.1",
     "eslint-plugin-flowtype-errors": "^3.6.0",
+    "eslint-plugin-html": "^4.0.5",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.0",

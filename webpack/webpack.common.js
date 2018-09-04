@@ -37,6 +37,13 @@ const alias = (dir = '') => path.resolve(path.join(__dirname, '..', dir));
 module.exports = merge([
   {
     context: paths.src,
+    entry: paths.entry,
+    output: {
+      path: paths.dist,
+      publicPath: parts.publicPath,
+    },
+    // mode: env,
+    // devtool: sourceMap ? 'cheap-module-eval-source-map' : undefined,
     resolve: {
       unsafeCache: true,
       symlinks: false,
@@ -56,11 +63,6 @@ module.exports = merge([
         images: alias('src/assets/images'),
       },
     },
-    entry: paths.entry,
-    output: {
-      path: paths.dist,
-      publicPath: parts.publicPath,
-    },
     optimization: {
       splitChunks: {
         // Must be specified for HtmlWebpackPlugin to work correctly.
@@ -69,7 +71,7 @@ module.exports = merge([
       },
     },
     stats: {
-      warningsFilter: (warning) => warning.includes('entrypoint size limit'),
+      warningsFilter: warning => warning.includes('entrypoint size limit'),
       children: false,
       modules: false,
     },
@@ -83,11 +85,19 @@ module.exports = merge([
     },
   },
   parts.loadHtml({ options: { minimize: true } }),
-  parts.lintJS({ include: paths.js.src, options: lintJSOptions }),
+  parts.lintJS({ include: paths.src, options: lintJSOptions }),
   parts.loadFonts({
     include: paths.fonts.src,
     options: {
       name: `${paths.fonts.dist}/[name].[hash:8].[ext]`,
+      limit: 10000,
+    },
+  }),
+  parts.loadMedia({
+    include: paths.media.src,
+    options: {
+      name: `${paths.media.dist}/[name].[hash:8].[ext]`,
+      limit: 10000,
     },
   }),
   // parts.extractSvg({

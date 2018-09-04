@@ -5,7 +5,7 @@ module.exports = {
   entry: {
     app: 'main.js',
   },
-  pages: '',
+  pages: '../static',
   assets: {
     js: {
       src: 'js',
@@ -23,6 +23,10 @@ module.exports = {
     fonts: {
       src: 'assets/fonts',
       dist: 'assets/fonts',
+    },
+    media: {
+      src: 'assets/media',
+      dist: 'assets/media',
     },
   },
 };
