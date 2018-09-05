@@ -5,7 +5,6 @@ import PageArticle from 'components/Page/Article';
 import PageList from 'components/Page/List';
 
 Vue.use(VueRouter);
-
 export default new VueRouter({
   routes: [
     {

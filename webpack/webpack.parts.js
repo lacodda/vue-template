@@ -81,10 +81,11 @@ exports.lintJS = ({ include, exclude, options }) => ({
   module: {
     rules: [
       {
-        test: /\.(js|vue)(\?.*)?$/i,
+        test: /\.js$/,
+        // test: /\.(js|vue)(\?.*)?$/i, TODO: vue-loader
         include,
         exclude,
-        enforce: 'pre',
+        // enforce: 'pre',
         loader: 'eslint-loader',
         options,
       },

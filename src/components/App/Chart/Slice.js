@@ -16,20 +16,33 @@ export interface SliceInterface {
 
 export class Slice implements SliceInterface {
   id: number;
+
   name: string;
+
   color: number;
+
   percent: any;
+
   cumulativePercent: number;
+
   activeTimeSum: number;
+
   activeTimeAvg: number;
+
   path: string;
+
   selected: boolean;
+
   isGroup: boolean;
+
   daysCount: number;
+
   rowNum: number;
 
   donutRadius: number;
+
   cutoutRadius: number;
+
   percentageInnerCutout: number;
 
   constructor(settings) {
@@ -116,3 +129,5 @@ export class Slice implements SliceInterface {
     return [x, y];
   };
 }
+
+export default Slice;

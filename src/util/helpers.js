@@ -7,17 +7,17 @@ export const calculateRelativePercentages = items => {
   if (items.length === 0) {
     return [];
   }
-  const total = items.reduce((acc, val) => (1 * acc) + parseInt(val, 10));
-  return items.map(i => (i / total) * 100.0);
-};
 
+  const total = items.reduce((acc, val) => 1 * acc + parseInt(val, 10));
+  return items.map(i => i / total * 100.0);
+};
 /**
  * Simple object check.
  * @param item
  * @returns {boolean}
  */
-export const isObject = item => (item && typeof item === 'object' && !Array.isArray(item));
 
+export const isObject = item => item && typeof item === 'object' && !Array.isArray(item);
 /**
  * Deep merge two objects.
  *
@@ -25,10 +25,12 @@ export const isObject = item => (item && typeof item === 'object' && !Array.isAr
  * @param sources
  * @returns {*}
  */
+
 export const mergeDeep = (target, ...sources) => {
   if (!sources.length) {
     return target;
   }
+
   const source = sources.shift();
 
   if (isObject(target) && isObject(source)) {
@@ -37,21 +39,27 @@ export const mergeDeep = (target, ...sources) => {
       if (Object.prototype.hasOwnProperty.call(source, key)) {
         if (isObject(source[key])) {
           if (!target[key]) {
-            Object.assign(target, { [key]: {} });
+            Object.assign(target, {
+              [key]: {},
+            });
           }
+
           mergeDeep(target[key], source[key]);
         } else {
-          Object.assign(target, { [key]: source[key] });
+          Object.assign(target, {
+            [key]: source[key],
+          });
         }
       }
     }
   }
+
   return mergeDeep(target, ...sources);
 };
-
 /**
  * Calculate z-index based on timestamp
  *
  * @returns {number}
  */
+
 export const zIndex = () => Math.floor(Date.now() / 1000);

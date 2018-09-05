@@ -35,9 +35,6 @@ module.exports = merge(
   parts.loadCSS({
     // include: paths.css.src,
     include: paths.src,
-    use: [
-      parts.autoprefix(),
-      parts.cssPreprocessorLoader,
-    ],
+    use: [parts.autoprefix(), parts.cssPreprocessorLoader],
   }),
 );

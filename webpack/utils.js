@@ -12,6 +12,7 @@ exports.getPaths = ({
   src = 'src',
   dist = 'dist',
   entry = {},
+  alias = {},
   pages = '',
   assets = {},
 } = {}) => {
@@ -26,6 +27,12 @@ exports.getPaths = ({
 
   entry = Object.keys(entry).reduce((obj, name) => {
     obj[name] = resolve(join(src, entry[name]));
+
+    return obj;
+  }, {});
+
+  alias = Object.keys(alias).reduce((obj, name) => {
+    obj[name] = resolve(alias[name]);
 
     return obj;
   }, {});
@@ -51,6 +58,7 @@ exports.getPaths = ({
       src,
       dist,
       entry,
+      alias,
       pages,
     },
   );

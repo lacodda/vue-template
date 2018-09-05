@@ -5,6 +5,20 @@ module.exports = {
   entry: {
     app: 'main.js',
   },
+  alias: {
+    vue$: 'node_modules/vue/dist/vue.esm.js',
+    '@': 'src',
+    api: 'src/api',
+    store: 'src/store',
+    components: 'src/components',
+    widgets: 'src/widgets',
+    i18n: 'src/i18n',
+    shared: 'src/shared',
+    services: 'src/shared/services',
+    util: 'src/util',
+    styles: 'src/scss',
+    images: 'src/assets/images',
+  },
   pages: '../static',
   assets: {
     js: {

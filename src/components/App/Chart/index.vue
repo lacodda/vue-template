@@ -78,7 +78,7 @@ export default {
   watch: {},
 
   methods: {
-    /*  
+    /*
     @HostListener('mousemove', ['$event']) onMousemove(event: MouseEvent) {
         this.tooltipCoords = {
             bottom: event.offsetX - 65,

@@ -16,7 +16,7 @@ requireWidgetComponent.keys().forEach(fileName => {
   // Get the component config
   const componentConfig = requireWidgetComponent(fileName);
   // get component name founded on parent directory name
-  let componentName = _.chain(path.dirname(fileName))
+  const componentName = _.chain(path.dirname(fileName))
     .camelCase()
     .upperFirst()
     .value();
