@@ -65,10 +65,10 @@ module.exports = merge([
     },
   },
   parts.loadHtml({ options: { minimize: true } }),
-  parts.lintJS({
-    include: paths.src,
-    options: lintJSOptions,
-  }),
+  // parts.lintJS({
+  //   include: paths.src,
+  //   options: lintJSOptions,
+  // }),
   parts.loadFonts({
     include: paths.fonts.src,
     options: {
